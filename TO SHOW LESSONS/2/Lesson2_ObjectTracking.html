@@ -1,0 +1,102 @@
+<DOCTYPE!>
+<html>
+	<head>
+		<!-- ------- JQUERY ------- -->
+		<script src="https://code.jquery.com/jquery-2.2.3.js" integrity="sha256-laXWtGydpwqJ8JA+X9x2miwmaiKhn8tVmOVEigRNtP4=" crossorigin="anonymous"></script>
+		<!-- ------- KNOCKOUT ------- -->
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.0/knockout-min.js"></script>
+		<!-- ------- Internal ------- -->
+		<script type="text/javascript" src="Lesson2_ObjectTracking.js"></script>
+		<style>
+			* {
+				box-sizing: border-box;
+			}
+			input {
+				width: 50%;
+				height: 3em;
+				padding: .5em;
+				font-size: 2em;
+			}
+			body {
+				margin: 0;
+			}
+			.vehicleList {
+				text-align: center;
+			}
+			table {
+				border: 2px solid gray;
+				width: 100%;
+				text-align: center;
+			}
+			table th {
+				color: white;
+				background-color: black;
+				width: 20%;
+			}
+			table td{
+				border: 1px solid #222222;
+			}
+			
+			.test-knockout {
+				position: absolute;
+				right: 1em;
+				top: 1em;
+				border: 1px solid red;
+				height: 15em;
+				width: 20em;
+				color: orange;
+				padding: .5em;
+				word-wrap: break-word;
+			}
+		</style>
+	</head>
+
+	<body>
+	<!-- <h1 data-bind="text: message"></h1> -->
+		<div style="border: 2px solid gray; text-align: center; padding: 1em;">
+			<form id="testForm">
+				<input type="text" id="vehicleName" required autofocus/>
+				<label for="vehicleName">Name your vehicle</label>
+				<br>
+				<input type="number" id="vehicleMPG" required/>
+				<label for="vehicleMPG">MPGs</label>
+				<br>
+				<input type="text" id="vehicleColor" required/>
+				<label for="vehicleColor">Color</label>
+				<br>
+				<button id="submit" onclick="Lesson.Run()" type="button">Button</button>
+			</form>
+		</div>
+		<h2 class="vehicleList">VEHICLE ATTRIBUTESESESES</h2>
+		<table id="vehicleTable">
+			<thead>
+				<tr>
+					<th>NAME</th>
+					<th>MPG</th>
+					<th>COLOR</th>
+					<th>ID</th>
+					<th>&nbsp;</th>
+				</tr>
+			</thead>
+			<tbody></tbody>
+		</table>
+		<div class="test-knockout">
+			<table>
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>MPG</th>
+						<th>Color</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr data-bind="foreach: vehicleArray">
+						<td data-bind="text: tName"></td>
+						<td data-bind="text: mpg"></td>
+						<td data-bind="text: color"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</body>
+</html>

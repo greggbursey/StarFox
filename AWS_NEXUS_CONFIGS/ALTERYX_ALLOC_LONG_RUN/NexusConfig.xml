@@ -1,0 +1,24 @@
+<Nexus>
+  <Workers>
+    <Worker>
+      <HubIP>10.10.0.114</HubIP>
+      <HubSubscribePort>9004</HubSubscribePort>
+      <LoadPort>6004</LoadPort>
+      <JobListenPort>7004</JobListenPort>
+      <MaxThreadCount>4</MaxThreadCount>
+      <JobSleepTimeMS>500</JobSleepTimeMS>
+      <NotifySleepTimeMS>5000</NotifySleepTimeMS>
+      <StatusPort>35004</StatusPort>
+    </Worker>
+  </Workers>
+  <ErrorEmailAddress>scoutdevelopment@buxtonco.com</ErrorEmailAddress>
+  <OutputFileDirectory>\\BUXVMEDQAT01\E\Files</OutputFileDirectory>
+  <OutputBatchDirectory>\\buxvmedQAT01\E\NexusOutput</OutputBatchDirectory>
+  <OutputThematicDirectory>\\buxvmedQAT01\E\Thematics</OutputThematicDirectory>
+  <OutputHeatmapCacheDirectory>\\NO</OutputHeatmapCacheDirectory>
+  <ConnectionStrings primaryID="2">
+    <ConnectionString id="2" name="SCOUT4" connectionString="Data Source=SCOUT4QAT; User Id=scout; Password=mzgFk0q1J7NWdFb;" type="Oracle" />
+  </ConnectionStrings>
+  <OutputReportFolderID>2</OutputReportFolderID>
+  <FluxCapacitor jigawatz="1.21" />
+</Nexus>

@@ -1,0 +1,13 @@
+c:\users\jbursey\documents\visual studio 2013\Projects\TestResultImporter\TestResultImporter\bin\Debug\TestResultImporter.exe.config
+c:\users\jbursey\documents\visual studio 2013\Projects\TestResultImporter\TestResultImporter\bin\Debug\TestResultImporter.exe
+c:\users\jbursey\documents\visual studio 2013\Projects\TestResultImporter\TestResultImporter\bin\Debug\TestResultImporter.pdb
+c:\users\jbursey\documents\visual studio 2013\Projects\TestResultImporter\TestResultImporter\bin\Debug\Oracle.DataAccess.dll
+c:\users\jbursey\documents\visual studio 2013\Projects\TestResultImporter\TestResultImporter\obj\Debug\TestResultImporter.csprojResolveAssemblyReference.cache
+c:\users\jbursey\documents\visual studio 2013\Projects\TestResultImporter\TestResultImporter\obj\Debug\TestResultImporter.exe
+c:\users\jbursey\documents\visual studio 2013\Projects\TestResultImporter\TestResultImporter\obj\Debug\TestResultImporter.pdb
+M:\CSVImporter\TestResultImporter\TestResultImporter\bin\Debug\TestResultImporter.exe.config
+M:\CSVImporter\TestResultImporter\TestResultImporter\obj\Debug\TestResultImporter.exe
+M:\CSVImporter\TestResultImporter\TestResultImporter\obj\Debug\TestResultImporter.pdb
+M:\CSVImporter\TestResultImporter\TestResultImporter\bin\Debug\TestResultImporter.exe
+M:\CSVImporter\TestResultImporter\TestResultImporter\bin\Debug\TestResultImporter.pdb
+M:\CSVImporter\TestResultImporter\TestResultImporter\obj\Debug\TestResultImporter.csprojResolveAssemblyReference.cache
