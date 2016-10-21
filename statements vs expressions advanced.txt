@@ -1,0 +1,622 @@
+20161011
+
+Statements, Expressions, Nesting, and Functions
+
+
+ADVANCED TOPICS
+===============
+
+These topics are a little more advanced and may be a little confusing. Don't
+worry if you don't get them at first -- maybe just come back to them later
+after you've mastered the other stuff. But when you do grasp them, they will
+really help your understanding of programming! Most of this stuff is used in
+commercial and open-source code and it will greatly help your ability to
+understand professional software. 
+
+
+Why Javascript developers use IEFs (immediately executed functions) for modules
+-------------------------------------------------------------------------------
+
+Javascript has a weird quirk where if you write code, and it's not inside a
+function, it will be executed in the global scope.
+
+This is dangerous because you could accidentally overwrite something global
+that the browser uses.
+
+Imagine if you had this code:
+
+    var name = "Bob";
+    var document = { firstName: name };
+
+That code is bad because `document` is already defined and is used to access the
+DOM. But after re-assigning the variable, we can't access the DOM anymore.
+
+But if we put our code inside a function, it's executed in the function scope:
+
+    function () {
+        var name = "Bob";
+        var document = { firstName: name };
+    }
+
+That code is better. While it does still overwrite the document variable
+LOCALLY, which means that code INSIDE the function won't be able to access the
+DOM, it preserves the document variable for the rest of the application.
+This is what we call a "local" variable. It "hides" the global variable with
+the inner one, but only for the code inside the function. Everybody outside
+that function will still see the original variable.
+
+Now imagine if you were including a bunch of third-party libraries. If each one
+had a global variable called "versionNumber", then they would interfere with
+each other. Imagine this:
+
+
+    <script>
+        var versionNumber = 1;
+        var getColor = function () {
+            if (versionNumber < 1) { 
+                alert("Invalid version!");
+                return;
+            }
+
+            console.log("Red");
+        };
+
+    </script>
+
+    <script>
+        var versionNumber = 0.5;
+        $.getJSON(versionNumber);
+    </script>
+
+This is a contrived example, but you can see how the logic in script #1
+depends on versionNumber being at least 1. But when script #2 gets executed,
+it will overwrite the versionNumber with 0.5 and cause the first script to
+fail when called. Even though these scripts are completely unrelated to each
+other, do completely different things, and each have their own version
+numbers, the fact that they are defined in global state means that they are
+interfering with each other.
+
+That's why Javascript developers put their code in functions:
+
+    <script>
+        var colorModule = function () {
+            var versionNumber = 1;
+            var getColor = function () {
+                if (versionNumber < 1) { 
+                    alert("Invalid version!");
+                }
+
+                console.log("Red");
+            };
+        };
+    </script>
+
+    <script>
+        var serverModule = function () {
+            var versionNumber = 0.5;
+            $.getJSON(versionNumber);
+        };
+    </script>
+
+Now, each script has its own local copy of versionNumber which is safely
+hidden inside a function. The code inside serverModule can't access the
+versionNumber that's inside of colorModule, and vice versa, so they're safely
+separated.
+
+However, the above code still has some issues.
+
+For one thing, before we made our change, the code was being
+executed immediately, as soon as Javascript got to it.
+
+Now it's in a function expression. Remember that? It means it won't get
+called immediately. Those statements above are just assigning those functions
+to variables -- the colorModule and serverModule variables, respectively.
+
+The functionality we want to happen -- console.logging "Red", and calling the
+server with the version number, respectively -- will never happen because
+they're stored in functions that haven't been called yet.
+
+We could do this:
+
+    <script>
+        var colorModule = function () {
+            var versionNumber = 1;
+            var getColor = function () {
+                if (versionNumber < 1) { 
+                    alert("Invalid version!");
+                }
+
+                console.log("Red");
+            };
+        };
+        colorModule();
+    </script>
+
+    <script>
+        var serverModule = function () {
+            var versionNumber = 0.5;
+            $.getJSON(versionNumber);
+        };
+        serverModule();
+    </script>
+
+This solves our problem of the code not being executed right away. Now, it
+does execute right away. But there are two problems with this approach:
+    1. What if another module defines their own global variable called
+    colorModule? colorModule is now a global variable so we are back to the
+    same problem as before.
+    2. It feels messy and redundant.
+
+That's why we use an immediately executed function expression. Remember how
+we did this:
+
+    function () { console.log("hi"); }();
+
+We can do the same thing with our modules:
+
+    <script>
+        function () {
+            var versionNumber = 1;
+            var getColor = function () {
+                if (versionNumber < 1) { 
+                    alert("Invalid version!");
+                }
+
+                console.log("Red");
+            };
+        }();
+    </script>
+
+    <script>
+        function () {
+            var versionNumber = 0.5;
+            $.getJSON(versionNumber);
+        }();
+    </script>
+
+Now, the code inside those functions will be executed immediately, which is
+what we want (in this contrived example at least). It also means we don't have
+to choose a variable name to assign those functions to. Prior to this change,
+we were still in danger of there being a naming conflict with `colorModule`
+and `serverModule`. Now, those modules don't conflict at all with anything in
+the global scope. They are completely self-contained.
+
+We still have a problem, though.
+
+The problem is that the function getColor() will never be called.
+
+Why?
+
+Because it's not visible to the rest of the code. The only place it's really
+visible is inside of that module function:
+
+    <script>
+        function () {
+            // getColor is only visible inside this function
+
+            var versionNumber = 1;
+            var getColor = function () {
+                if (versionNumber < 1) { 
+                    alert("Invalid version!");
+                }
+
+                console.log("Red");
+            };
+        }();
+
+        // Code here cannot see getColor
+    </script>
+
+Whenever you DECLARE a variable (i.e., use the `var` keyword to create a
+variable that hasn't been created yet), if you did so in the global scope,
+it's visible to everyone, but if you did so inside of a function, it's only
+visible within that function.
+
+We could call our getColor function from inside our anonymous module function:
+
+    <script>
+        function () {
+            // getColor is only visible inside this function
+
+            var versionNumber = 1;
+            var getColor = function () {
+                if (versionNumber < 1) { 
+                    alert("Invalid version!");
+                }
+
+                console.log("Red");
+            };
+
+            getColor();
+        }();
+
+        // Code here cannot see getColor
+    </script>
+
+But this seems silly, because it looks like getColor is designed to be called
+by client code whenever it needs to get the color, not just once when the
+module is defined.
+
+Therefore, we need to somehow make this function available to everyone.
+
+But how?
+
+The way Javascript developers do this is by creating a little "API".
+Basically, their API consists of the functions and properties that are
+available to clients / people calling their code.
+
+A good principle is that we only want to include things in the API that the
+client should see. If we have data that's not useful for them to see, or
+that's confusing, or they would mess it up if they could see it because they
+don't know how it should be used, then we don't want to include it in the API.
+
+So in our color module, what information do we really want to expose to the
+client? Well, we probably don't want to include the versionNumber, since that
+is something that we set when we release. But we definitely want to include
+the getColor() function.
+
+Since our getColor function fails if the version number is wrong, it might
+also be useful to provide a function that tells the client whether or not the
+version number is valid. That way, if it's not valid, they can avoid calling
+our getColor() function and thereby avoid all kinds of alert boxes popping up.
+
+So our API should include:
+
+    getColor()
+    isValidVersion()
+
+The way that Javascript developers typically do this is to put all these
+functions inside an object, and somehow make that object available to the
+global scope.
+
+Here's what our object will look like:
+
+    var api = {
+        getColor: function () {
+            if (versionNumber < 1) { 
+                alert("Invalid version!");
+            }
+
+            console.log("Red");
+        },
+        isVersionValid: function () {
+            return versionNumber >= 1;
+        }
+    };
+
+This is looking good. But you know what? We have some duplicated logic, in our
+getColor function:
+
+    if (versionNumber < 1) {
+
+...and also in our isVersionValid function:
+
+    return versionNumber >= 1;
+
+Let's make the getColor function actually rely on the isVersionValid function
+instead of doing its own check, since isVersionValid already does what we
+want, and we should have a single source of truth:
+
+    var api = {
+        getColor: function () {
+            if (!api.isVersionValid()) { 
+                alert("Invalid version!");
+            }
+
+            console.log("Red");
+        },
+        isVersionValid: function () {
+            return versionNumber >= 1;
+        }
+    };
+
+Inside our module function, that could look like this:
+
+    <script>
+        function () {
+            var versionNumber = 1;
+            var api = {
+                getColor: function () {
+                    if (!api.isVersionValid()) { 
+                        alert("Invalid version!");
+                    }
+
+                    console.log("Red");
+                },
+                isVersionValid: function () {
+                    return versionNumber >= 1;
+                }
+            };
+        }();
+    </script>
+
+
+Ok. Our api object is looking pretty good. So how are we going to make it
+available to the world?
+
+First we decide a name for our module. Since it deals with colors, let's
+call it "color".
+
+What we can now do is assign our `api` object as a new property on the 
+`window` variable.
+
+The variable `window` is the GLOBAL object in Javascript (within the browser,
+that is -- Node.js is different).
+
+If there is a property on the `window` object, it is also available globally
+to the entire application without needing to reference `window`.
+
+    window.hello = "world";
+    console.log(hello); // "world"
+
+Conversely, if you declare a variable in the GLOBAL scope, it is added to the
+window object.
+
+    var hello = "world";
+    console.log(window.hello); // "world"
+
+Therefore, to make our API available globally, we can add it as a property on
+the window object:
+
+    <script>
+        function () {
+            var versionNumber = 1;
+            var api = {
+                getColor: function () {
+                    if (!api.isVersionValid()) { 
+                        alert("Invalid version!");
+                    }
+
+                    console.log("Red");
+                },
+                isVersionValid: function () {
+                    return versionNumber >= 1;
+                }
+            };
+
+            window.color = api;
+        }();
+    </script>
+
+Now, in order to call our code, someone can do the following:
+
+    if (color.isVersionValid()) {
+        color.getColor();
+    }
+
+Now you may ask, why can't we just do this:
+
+    <script>
+        function () {
+            var versionNumber = 1;
+            var api = {
+                getColor: function () {
+                    if (!api.isVersionValid()) { 
+                        alert("Invalid version!");
+                    }
+
+                    console.log("Red");
+                },
+                isVersionValid: function () {
+                    return versionNumber >= 1;
+                }
+            };
+
+            var color = api;
+        }();
+    </script>
+
+It's because the `var` keyword actually creates a variable ONLY INSIDE THE
+FUNCTION. It won't be available outside the function.
+
+Ok, so how about this?
+
+    <script>
+        function () {
+            var versionNumber = 1;
+            var api = {
+                getColor: function () {
+                    if (!api.isVersionValid()) { 
+                        alert("Invalid version!");
+                    }
+
+                    console.log("Red");
+                },
+                isVersionValid: function () {
+                    return versionNumber >= 1;
+                }
+            };
+
+            color = api;
+        }();
+    </script>
+    
+So that might actually work... but only by mistake. Don't do this. If your
+clients wrapped your code in another anonymous function (which is sometimes a
+good practice), and there was another `color` variable defined somewhere...
+your code would only re-define that particular color variable.
+
+Doing `window.color = api;` ensures that `color` will be added to the global scope.
+
+
+
+
+
+
+De-referencing
+--------------
+
+This is a fancy word for something that happens with expressions. Basically,
+it means that if you have a "chain" of expressions, Javascript will
+"de-reference" them one by one.
+
+The simplest example is with object properties. Say we have an object like
+this:
+
+    var obj = {
+        level1: {
+            level2: "hello"
+        }
+    };
+
+One way to access that innermost property is like this:
+
+    var a = obj.level1.level2;
+
+Another way, which does the same thing, is like this:
+
+    var a = obj["level1"]["level2"];
+
+Basically, that's the same thing as doing this:
+
+    var outer = obj["level1"];
+    var a = outer["level2"];
+
+Javascript lets us skip those intermediate variables and just use them in a
+chain. This property of Javascript, that expands those expressions, is called
+"de-referencing".
+
+We can also do this with function calls. Say for example we have the following
+code:
+
+    var myfunc = function () {
+        return {
+            name: "Bob"
+        };
+    };
+
+That's just a function that returns an object. What if we wanted to call that
+function, take the resulting object, access the `name` property, and store it
+in a variable called `a`? We might do something like this:
+
+    var obj = myfunc();
+    var a = obj.name;
+
+But Javascript will also let us skip the intermediate variable `obj` and just
+do this:
+
+    var a = myfunc().name;
+
+You see what's happening there? The function call is being replaced by the
+return value, which is an object, and then the code is accessing the `name`
+property on the resulting object. As if we did this:
+
+    var a = { name: "Bob" }.name;
+
+We can do the same thing with function calls. Imagine if, instead of name
+being a property storing a string, it was a function that returned a string:
+
+    var myfunc = function () {
+        return {
+            name: function () {
+                return "Bob";
+            }
+        };
+    };
+
+Similar to the previous example, if we wanted to get that value "Bob" and
+store it in a variable, how would we do it? We could do this:
+
+    var obj = myfunc();
+    var a = obj.name();
+
+Or we could do this:
+
+    var a = mufunc().name();
+
+jQuery uses this concept of chaining to make their API easier to use.
+
+You may have seen something like this:
+
+    $('#my-element').find('.child-item').addClass('big-font').show();
+
+Sometimes people format it like this, but it's the same thing:
+    
+    $('#my-element')
+        .find('.child-item')
+        .addClass('big-font')
+        .show();
+
+Without chaining, that same operation would probably look like this:
+
+    var element = $('#my-element');
+    var childItem = element.find('.child-item');
+    childItem.addClass('big-font');
+    childItem.show();
+
+jQuery wanted to enable code to look a little cleaner, so they did a trick.
+
+When you call that first method, $('#my-element'), that's the primary jQuery
+function. That's what controls everything. What that does is basically look
+for the element matching the ID my-element, then wrap it in a special jQuery
+object. Then it returns the jQuery object.
+
+That jQuery object probably looks something like this under the hood:
+
+    {
+        addClass: function (className) { ... },
+        find: function (selector) { ... },
+        show: function () { ... }
+    }
+
+So when you call that first function, the $() function, that function returns
+a jQuery object. When you do .find('.child-item'), that is actually calling
+the .find() function that belongs to that jQuery object.
+
+The .find() function actually returns a NEW jQuery object with different
+HTML elements, but it still has the same functions.
+
+What's cool about jQuery, is that every function returns a jQuery object, so
+you can write a chain infinitely long.
+
+    $('#my-element')            // Returns a jQuery object
+        .find('.child-item')    // Returns a jQuery object
+        .addClass('big-font')   // Returns a jQuery object
+        .show()                 // Returns a jQuery object
+        .hide()                 // Returns a jQuery object
+        .show()                 // Returns a jQuery object
+        .hide()                 // Returns a jQuery object
+        // ...this is the song that never ends...
+
+    
+
+Compounding functions (not sure what this is actually called)
+-------------------------------------------------------------
+
+We were looking at function calls...
+
+    var myfunc = function () { return "blah"; };
+    var a = myfunc();
+
+And how that expands to:
+
+    var a = "blah";
+
+What would happen if our function, instead of returning a string, actually
+returned another function?
+
+    function myfunc () { return function () { return "blah"; }; }
+
+Our original code:
+
+    a = myfunc();
+
+Would expand to this:
+
+    a = function () { return "blah"; };
+
+So now the value of `a` is set to a function which can be called later, the
+same as if we had just defined it inline as we often do.
+
+If instead we wanted `a` to be set to "blah", we could do this:
+
+    var a = myfunc()();
+
+That will expand to this:
+
+    var a = function () { return "blah"; }();
+
+Which, of course, will expand to:
+
+    var a = "blah";
+
