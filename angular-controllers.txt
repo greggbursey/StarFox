@@ -1,0 +1,181 @@
+Controllers
+-----------
+We've already talked about special Angular markup in the HTML. But we also write real JavaScript to work with Angular.
+
+There are several ways to write this code. The simplest way is using Controllers.
+
+The idea behind a controller is that it "controls" the display. It controls how the display is getting its data.
+
+Think of your HTML as a robot, and the Controller as the microchip that controls the robot.
+
+Without the microchip, the robot just sits there, doing nothing.
+
+With the microchip, it can move, speak, shoot lasers.
+
+Same thing with the Controller.
+
+Without the Controller, your HTML does nothing -- it just sits there, doing nothing.
+
+With the Controller, it can display data, listen to mouse clicks, update automatically, etc.
+
+
+Scope
+-----------
+Scope is important to understanding Angular controllers.
+
+Remember with HTML elements, each HTML element can have a child? For example, when you do myDiv.appendChild(mySpan), mySpan becomes a CHILD of myDiv.
+
+That's the same thing as this:
+
+<div id="myDiv">
+    <span id="mySpan"></span>
+</div>
+
+The span is a child of the div. You can think of this as an inner-outer relationship. The div contains, or wraps around, the span, so it's on the outside. The span is on the inside.
+
+Angular piggybacks on this element hierarchy to organize your code. 
+
+So when you write:
+
+<div ng-controller="TestController">
+    {{testData}}
+    <span id="mySpan">{{testData}}</span>
+</div>
+
+That ng-controller directive tells Angular that the TestController will be available anywhere inside the div. It will be available immediately inside the div, and also it will be available in all children underneath that div, which includes the span.
+
+If you do this:
+
+<div id="outer">
+    <div ng-controller="TestController">
+        {{testData}}
+        <span id="mySpan">{{testData}}</span>
+    </div>
+</div>
+
+... The TestController will not be available to the "#outer" div. Remember the Russian nesting dolls. Things are only available to themselves and their children. A parent cannot see inside of its children. But a child can see everything inside of its parents.
+
+So what do we mean when we say "available to"? Well, all the properties that we have added to TestController's $scope variable will be available to all the HTML elements beneath it. For example, if we write our controller like this:
+
+var myController = application.controller("TestController", function ($scope) {
+    $scope.testData = "asdkfhjasjdkfhasdf";
+});
+
+Then the testData property will be available to #mySpan because we added it to the $scope variable inside TestController.
+
+
+Multiple instances of the same controller
+-----------------------------------------
+You can have multiple instances of the same type of controller on your page.
+
+<div id="outer">
+    <div id="one" ng-controller="TestController">
+    </div>
+
+    <div id="two" ng-controller="TestController">
+    </div>
+</div>
+
+Each time you write ng-controller, a NEW, SEPARATE instance of TestController will be created. Therefore, div#one will have its own copy and div#two will have its own copy.
+
+Each controller will now have its own copy of all the code in TestController. If you write a controller like this:
+
+var myController = application.controller("TestController", function ($scope) {
+    $scope.name = "Me";
+    $scope.testData = "asdfasdfasdf";
+    $scope.greet = function () {
+        console.log("My name is " + $scope.name);
+    };
+});
+
+Then each instance of TestController will have its own copy of name, its own copy of testData, and its own copy of greet.
+
+If we later change the name on div#one's copy to be "Larry", the name on div#two's copy will still be "Me".
+
+
+Starting an Angular app
+-----------------------
+To get started using Angular on a page, we first need to create an Angular module. 
+
+var myFirstAngularModule = angular.module("myModule", []);
+
+We'll then attach our controller to this module:
+
+var test = myFirstAngularModule.controller("TestController", function ($scope) {
+    $scope.name = "Me";
+    $scope.testData = "asdfasdfasdf";
+    $scope.greet = function () {
+        console.log("My name is " + $scope.name);
+    };
+});
+
+So to use all this stuff in our HTML template:
+
+<div id="main" ng-app="myFirstAngularModule">
+    <div id="blah"></div>
+
+    <div id="one" ng-controller="TestController">
+        {{name}}
+    </div>
+</div>
+
+Using ng-app="myFirstAngularModule" tells Angular that we want the module we created to be available to div#main and everything beneath.
+
+That lets us then do ng-controller="TestController", which tells Angular that we want a new instance of TestController to be available to div#one and everything beneath.
+
+
+
+Exercises
+---------
+1. Create a module called "testplan".
+2. Create a controller called "TestController".
+    a. The TestController should have a property on its $scope called "tests".
+    This property should be an array.
+3. Create a separate controller called "StepController".
+    a. The StepController should have a property on its $scope called "steps".
+    This property should be an array.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Angular also lets us create custom elements that contains its own functionality so you can easily reuse them. For example, a standard HTML element is a "button". You can declare it as <button> anywhere you want, and the browser will render a button. Every button has certain properties common to all buttons: 1. They can have a text label. 2. They can be clicked. etc.
+
+Angular lets us create our own custom elements. They're called 
+
+
+
+Procedural vs Declarative
+-------------------------
+There are various ways to think of programming. One distiction that is sometimes made is procedural vs declarative approaches to programming.
+
+Procedural is what you've been doing so far. It involves a lot of calling of functions whenever we want to do something. Create ninjas. Add a ninja. Make the ninja speak.
+
+Declarative takes a different approach -- it emphasizes DESCRIBING what your data should look like.
+
+
+
+
+
+
+
+
+
+
+
+Continuing with the robot theme, imagine you can have nested robots. For example, you can have a mothership robot which can contain various smaller robots that do something more specific -- for example, a hangar controller robot, a waste control robot, a navigation robot. And each of those robots can contain smaller robots that do even more specific things. For example, the hangar control robot might have a tractor beam robot, an airlock robot, etc.
