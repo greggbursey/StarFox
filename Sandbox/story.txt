@@ -6,3 +6,7 @@ This site will display an overview about me....History, links to my career histo
 All of this information needs to be using HTML, javascript, jQuery, React, Python, and a Database.
 
 The site needs to be hosted so you can get to it from anywhere.
+
+This seems like a good place to start:
+Part 1 - https://realpython.com/blog/python/the-ultimate-flask-front-end/
+Part 2 - https://realpython.com/blog/python/the-ultimate-flask-front-end-part-2/
