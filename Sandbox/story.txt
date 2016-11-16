@@ -1,0 +1,8 @@
+ABOUT ME site:
+
+------------------------ How it's going to work------------------------ 
+This site will display an overview about me....History, links to my career history, likes, dislikes, family stuff, church stuff (maybe links to audio and blog stuff)...It needs a page that has a "been here" area, in which there is a text area that they can click and "sign" their name indicating that they've visited the site. Maybe a "statistics" page that only I can get to somehow......
+
+All of this information needs to be using HTML, javascript, jQuery, React, Python, and a Database.
+
+The site needs to be hosted so you can get to it from anywhere.
