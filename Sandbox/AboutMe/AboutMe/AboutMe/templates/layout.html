@@ -4,7 +4,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- external -->
-    <script src="https://use.fontawesome.com/5901996fbc.js"></script>
+    <!--<script src="https://use.fontawesome.com/5901996fbc.js"></script>-->
+    <link href="../static/content/font-awesome-4.7.0/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" />
     <!-- internal -->
     <link href="../static/content/reset.css" rel="stylesheet" />
     <link href="../static/content/site.css" rel="stylesheet" />
@@ -15,7 +16,10 @@
 <body>
     <!--  -->
     <div class="nav">
-        <ul>
+        <div id="nav-hamburger">
+            <i class="fa fa-bars fa-2x"></i>
+        </div>
+        <ul class="nav-items">
             <li>
                 <a href="{{ url_for('home') }}">
                     Home <i class="fa fa-home"></i>
