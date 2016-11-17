@@ -3,15 +3,34 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- external -->
+    <script src="https://use.fontawesome.com/5901996fbc.js"></script>
+    <!-- internal -->
+    <link href="../static/content/reset.css" rel="stylesheet" />
+    <link href="../static/content/site.css" rel="stylesheet" />
+
     <title>{{ title }} - My Flask Application</title>
 </head>
 
 <body>
-    <div>
+    <!--  -->
+    <div class="nav">
         <ul>
-            <li><a href="{{ url_for('home') }}">Home</a></li>
-            <li><a href="{{ url_for('about') }}">About</a></li>
-            <li><a href="{{ url_for('contact') }}">Contact</a></li>
+            <li>
+                <a href="{{ url_for('home') }}">
+                    Home <i class="fa fa-home"></i>
+                </a>
+            </li>
+            <li>
+                <a href="{{ url_for('about') }}">
+                    About <i class="fa fa-question"></i>
+                </a>
+            </li>
+            <li>
+                <a href="{{ url_for('contact') }}">
+                    Contact <i class="fa fa-phone"></i>
+                </a>
+            </li>
         </ul>
     </div>
 
@@ -19,7 +38,7 @@
         {% block content %}{% endblock %}
         <hr />
         <footer>
-            <p>&copy; {{ year }} - My Flask Application</p>
+            <p>&copy; {{ year }}</p>
         </footer>
     </div>
 

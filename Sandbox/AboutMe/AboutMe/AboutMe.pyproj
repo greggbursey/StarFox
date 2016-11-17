@@ -42,6 +42,8 @@
     <Folder Include="AboutMe\templates\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AboutMe\static\content\reset.css" />
+    <Content Include="AboutMe\static\content\site.css" />
     <Content Include="requirements.txt" />
     <Content Include="AboutMe\static\scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="AboutMe\static\scripts\jquery-1.10.2.js" />
