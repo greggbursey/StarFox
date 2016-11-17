@@ -3,6 +3,10 @@
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
 }
+@import url(https://fonts.googleapis.com/css?family=Droid+Sans);
+body {
+    font-family: 'Droid Sans', sans-serif;
+}
 
 .left {
     float: left;
@@ -31,5 +35,41 @@
 }
 
 .nav-items {
-    display: none;
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    width: 80%;
+    height: 100%;
+}
+.nav-items li {
+    width: 33%;
+    line-height: 48px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: relative;
+}
+.nav-items li i {
+    margin-right: .5rem;
+    -moz-transition: .2s ease all;
+    -webkit-transition: .2s ease all;
+    transition: .2s ease all;
+    position: absolute;
+    left: 0;
+}
+.nav-items li a {
+    height: 100%;
+    width: 100%;
+}
+.nav-items li:hover {
+    background-color: orange;
+}
+.nav-items li:hover a {
+    opacity: .25;
+}
+.nav-items li:hover i {
+    font-size: 1.5rem;
+    left: 48%;
 }

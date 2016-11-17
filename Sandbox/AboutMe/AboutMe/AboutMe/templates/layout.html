@@ -6,6 +6,7 @@
     <!-- external -->
     <!--<script src="https://use.fontawesome.com/5901996fbc.js"></script>-->
     <link href="../static/content/font-awesome-4.7.0/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link href='https://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
     <!-- internal -->
     <link href="../static/content/reset.css" rel="stylesheet" />
     <link href="../static/content/site.css" rel="stylesheet" />
@@ -17,22 +18,25 @@
     <!--  -->
     <div class="nav">
         <div id="nav-hamburger">
-            <i class="fa fa-bars fa-2x"></i>
+            <i class="fa fa-bars fa-2x left"></i>
         </div>
-        <ul class="nav-items">
+        <ul class="nav-items right">
             <li>
+                <i class="fa fa-home"></i>
                 <a href="{{ url_for('home') }}">
-                    Home <i class="fa fa-home"></i>
+                    Home
                 </a>
             </li>
             <li>
+                <i class="fa fa-question"></i>
                 <a href="{{ url_for('about') }}">
-                    About <i class="fa fa-question"></i>
+                    About
                 </a>
             </li>
             <li>
+                <i class="fa fa-phone"></i>
                 <a href="{{ url_for('contact') }}">
-                    Contact <i class="fa fa-phone"></i>
+                    Contact
                 </a>
             </li>
         </ul>
