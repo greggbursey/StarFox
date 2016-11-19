@@ -29,13 +29,14 @@ body {
 .side-nav {
     height: calc(100vh - 3rem);
     width: 4rem;
-    position: fixed;
-    border: 1px solid green;
+    position: absolute;
+    background-color: green;
+    overflow: hidden;
 }
 .main-body {
     width: calc(100vw - 4rem);
     height: calc(100vh - 3rem);
-    border: 1px solid blue;
+    background-color: blue;
 }
 
 #nav-hamburger {
@@ -53,7 +54,6 @@ body {
     height: 100%;
 }
 .nav-items li {
-    width: 33%;
     line-height: 48px;
     text-align: center;
     display: flex;

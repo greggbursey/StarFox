@@ -15,7 +15,7 @@
 </head>
 
 <body>
-    <!--  -->
+    <!-- NAV -->
     <div class="nav">
         <div id="nav-hamburger">
             <i class="fa fa-bars fa-2x left"></i>
@@ -39,11 +39,19 @@
                     Contact
                 </a>
             </li>
+            <li>
+                <i class="fa fa-beer"></i>
+                <a href="{{ url_for('imagescrapper') }}">
+                    Image Scrapper
+                </a>
+            </li>
         </ul>
     </div>
+    <!--  -->
     <div class="side-nav left">
         Hi
     </div>
+    <!--  -->
     <div class="main-body right">
         {% block content %}{% endblock %}
         <hr />
@@ -51,6 +59,7 @@
             <p>&copy; {{ year }}</p>
         </footer>
     </div>
+    <div class="clear"></div>
 
     <script src="/static/scripts/jquery-1.10.2.js"></script>
     {% block scripts %}{% endblock %}

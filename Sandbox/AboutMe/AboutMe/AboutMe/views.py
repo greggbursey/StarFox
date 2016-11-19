@@ -35,3 +35,13 @@ def about():
         year=datetime.now().year,
         message='Your application description page.'
     )
+
+@app.route('/imagescrapper')
+def imagescrapper():
+    """Renders the image scrapper page."""
+    return render_template(
+        'imagescrapper.html',
+        dragonTitle='Image Scrapper',
+        dragonMessage=datetime.now().year,
+        message='Your application description page.'
+    )
