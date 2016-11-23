@@ -55,25 +55,6 @@ body {
     cursor: pointer;
     margin-top: 1rem;
 }
-.nav-items li i {
-    position: absolute;
-}
-.nav-items li a {
-    opacity: 0;
-    -moz-transition: .2s ease all;
-    -webkit-transition: .2s ease all;
-    -o-transition: .2s ease all;
-    transition: .2s ease all;
-}
-.nav-items li:hover {
-    
-}
-.nav-items li:hover a {
-    opacity: 1;
-}
-.nav-items li:hover i {
-    
-}
 
 input {
     width: 100%;

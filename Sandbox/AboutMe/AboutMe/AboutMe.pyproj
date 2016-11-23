@@ -87,6 +87,7 @@
     <Content Include="AboutMe\static\content\font-awesome-4.7.0\font-awesome-4.7.0\scss\_variables.scss" />
     <Content Include="AboutMe\static\content\reset.css" />
     <Content Include="AboutMe\static\content\site.css" />
+    <Content Include="AboutMe\templates\fileprojects.html" />
     <Content Include="AboutMe\templates\imagescrapper.html" />
     <Content Include="requirements.txt" />
     <Content Include="AboutMe\static\scripts\jquery-1.10.2.intellisense.js" />
