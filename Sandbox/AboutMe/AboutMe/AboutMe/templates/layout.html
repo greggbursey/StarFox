@@ -20,32 +20,29 @@
         <div id="nav-hamburger">
             <i class="fa fa-bars fa-2x"></i>
         </div>
+        <div class="right" style="height: 100%; width: 80%;">
+            <ul class="nav-items">
+                <li>
+                    <a href="{{ url_for('home') }}">
+                        Home
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url_for('about') }}">
+                        About
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url_for('fileprojects') }}">
+                        File Projects
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="clear"></div>
     </div>
     <!--  -->
-    <div class="side-nav left">
-        <ul class="nav-items">
-            <li>
-                <a href="{{ url_for('home') }}">
-                    Home
-                </a>
-            </li>
-            <li>
-                <a href="{{ url_for('about') }}">
-                    About
-                </a>
-            </li>
-            <li>
-                <a href="{{ url_for('contact') }}">
-                    Contact
-                </a>
-            </li>
-            <li>
-                <a href="{{ url_for('fileprojects') }}">
-                File Projects
-                </a>
-            </li>
-        </ul>
-    </div>
+    <div class="side-nav left"></div>
     <!--  -->
     <div class="main-body right">
         {% block content %}{% endblock %}

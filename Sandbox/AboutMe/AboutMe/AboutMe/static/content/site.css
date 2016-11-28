@@ -50,6 +50,8 @@ body {
 
 .nav-items {
     list-style: none;
+    display: flex;
+    justify-content: space-around;
 }
 .nav-items li {
     cursor: pointer;

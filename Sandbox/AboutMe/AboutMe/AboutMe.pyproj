@@ -101,7 +101,6 @@
     <Content Include="AboutMe\static\scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="AboutMe\static\scripts\_references.js" />
     <Content Include="AboutMe\templates\about.html" />
-    <Content Include="AboutMe\templates\contact.html" />
     <Content Include="AboutMe\templates\index.html" />
     <Content Include="AboutMe\templates\layout.html" />
     <Content Include="web.config" />
