@@ -9,22 +9,22 @@ from AboutMe import app
 @app.route('/')
 @app.route('/home')
 def home():
-    """Renders the home page."""
-    return render_template(
-        'index.html',
-        title='Home Page',
-        year=datetime.now().year,
-    )
+	"""Renders the home page."""
+	return render_template(
+		'index.html',
+		title='Home Page',
+		year=datetime.now().year,
+	)
 #--
 @app.route('/contact')
 def contact():
-    """Renders the contact page."""
-    return render_template(
-        'contact.html',
-        title='Contact',
-        year=datetime.now().year,
-        message='Your contact page.'
-    )
+	"""Renders the contact page."""
+	return render_template(
+		'contact.html',
+		title='Contact',
+		year=datetime.now().year,
+		message='Your contact page.'
+	)
 #--
 @app.route('/about')
 def about():
@@ -35,7 +35,7 @@ def about():
 		year=datetime.now().year,
 		message='Your application description page.'
 	)
-
+#--
 @app.route('/fileprojects')
 def fileprojects():
 	"""Renders file projects page."""
