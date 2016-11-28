@@ -26,9 +26,9 @@ def about():
 		message='Your application description page.'
 	)
 #--
-@app.route('/fileprojects')
-def fileprojects():
-	"""Renders file projects page."""
+@app.route('/projects')
+def projects():
+	"""Renders projects page."""
 	return render_template(
-	'fileprojects.html'
+	'projects.html'
 	)
