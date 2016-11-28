@@ -887,3 +887,8 @@ C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\Extensions\Micro
 2016-11-15T18:41:27: Saving group "D:\StarFox\Sandbox\AboutMe\AboutMe\env\Lib\site-packages\werkzeug"
 2016-11-15T18:41:28: End of group "D:\StarFox\Sandbox\AboutMe\AboutMe\env\Lib\site-packages\werkzeug"
 2016-11-15T18:41:28: Deleting 0 files
+
+2016-11-28T09:47:28: Start analysis
+2016-11-28T09:47:28: [WARNING] Library was set explicitly - skipping path detection
+2016-11-28T09:47:28: IncludeModulesFromModulePath = win32com
+2016-11-28T09:47:29: Deleting 457 files
