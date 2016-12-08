@@ -41,3 +41,8 @@ body {
 .nav-top ul li:hover {
     background-color: #ad4000;
 }
+
+.main-body {
+    height: calc(100vh - 50px);
+    padding: 1rem;
+}
