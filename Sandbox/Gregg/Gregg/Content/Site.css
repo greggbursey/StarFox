@@ -45,4 +45,5 @@ body {
 .main-body {
     height: calc(100vh - 50px);
     padding: 1rem;
+    overflow: auto;
 }
