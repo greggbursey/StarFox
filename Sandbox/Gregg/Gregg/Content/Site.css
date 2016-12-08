@@ -3,6 +3,9 @@
     -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
+body {
+    font-family: 'NTR', sans-serif;
+}
 
 .left {
     float: left;
@@ -14,3 +17,27 @@
     clear: both;
 }
 /**/
+.nav-top {
+    background-color: #ff6a00;
+    height: 50px;
+    position: relative;
+}
+.nav-top ul {
+    line-height: 50px;
+    width: 80%;
+    color: #ffffff;
+    display: flex;
+    text-align: center;
+}
+.nav-top ul li {
+    height: 100%;
+    width: 100%;
+    -webkit-transition: .2s ease;
+    -moz-transition: .2s ease;
+    -o-transition: .2s ease;
+    transition: .2s ease;
+    cursor: pointer;
+}
+.nav-top ul li:hover {
+    background-color: #ad4000;
+}

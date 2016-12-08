@@ -4,13 +4,14 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link href="https://fonts.googleapis.com/css?family=NTR" rel="stylesheet">
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <link href="~/fonts/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 
 </head>
 <body>
-    <div>
+    @*<div>
         <div>
             <div>
                 @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
@@ -24,6 +25,17 @@
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
+    </div>*@
+    <div class="nav-top">
+        <div class="left" style="position: absolute; left: 1rem; top: .5rem; color: #ffffff;">
+            <i class="fa fa-bars fa-2x"></i>
+        </div>
+        <ul class="right">
+            <li>About</li>
+            <li>Projects</li>
+            <li>Fun</li>
+        </ul>
+        <div class="clear"></div>
     </div>
     <div>
         @RenderBody()
