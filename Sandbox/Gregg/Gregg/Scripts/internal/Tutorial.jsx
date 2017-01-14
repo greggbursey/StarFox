@@ -6,31 +6,31 @@
 
 //--------------------------------------------------------
 var CommentBox = React.createClass({
-  loadCommentsFromServer: function() {
-    var xhr = new XMLHttpRequest();
-    xhr.open('get', this.props.url, true);
-    xhr.onload = function() {
-      var data = JSON.parse(xhr.responseText);
-      this.setState({ data: data });
-    }.bind(this);
-    xhr.send();
-  },
-  getInitialState: function() {
-    return {data: []};
-  },
-  componentDidMount: function() {
-    this.loadCommentsFromServer();
-    window.setInterval(this.loadCommentsFromServer, this.props.pollInterval);
-  },
-  render: function() {
-    return (
+    loadCommentsFromServer: function () {
+        var xhr = new XMLHttpRequest();
+        xhr.open('get', this.props.url, true);
+        xhr.onload = function () {
+            var data = JSON.parse(xhr.responseText);
+            this.setState({ data: data });
+        }.bind(this);
+        xhr.send();
+    },
+    getInitialState: function () {
+        return { data: [] };
+    },
+    componentDidMount: function () {
+        this.loadCommentsFromServer();
+        window.setInterval(this.loadCommentsFromServer, this.props.pollInterval);
+    },
+    render: function () {
+        return (
       <div className="commentBox">
         <h1>Comments</h1>
         <CommentList data={this.state.data} />
         <CommentForm />
       </div>
     );
-  }
+    }
 });
 
 //var CommentList = React.createClass({
@@ -45,39 +45,41 @@ var CommentBox = React.createClass({
 //    }
 //});
 var CommentList = React.createClass({
-  render: function() {
-    var commentNodes = this.props.data.map(function(comment) {
-      return (
-        <Comment author={comment.Author} key={comment.Id}>{comment.Text}{comment.FavNum}
+    render: function () {
+        var commentNodes = this.props.data.map(function (comment) {
+            return (
+        <Comment author={comment.Author} key={comment.Id}>
+            {comment.Text}{comment.FavNum}
         </Comment>
       );
-    });
-    return (
-      <div className="commentList">{commentNodes}
+        });
+        return (
+      <div className="commentList">
+          {commentNodes}
       </div>
     );
-  }
+    }
 });
 
 var CommentForm = React.createClass({
-    render: function() {
+    render: function () {
         return (
           <div className="commentForm">
-            Hello, world! I am a CommentForm.
+              Hello, world! I am a CommentForm.
           </div>
       );
     }
 });
 
 var Comment = React.createClass({
-    render: function() {
+    render: function () {
         return (
           <div className="comment">
             <h2 className="commentAuthor">
-              {this.props.author}
+                {this.props.author}
             </h2>
-        {this.props.children}
-        </div>
+              {this.props.children}
+          </div>
       );
     }
 });
@@ -87,3 +89,15 @@ ReactDOM.render(
     <CommentBox url="/comments" pollInterval={2000} />,//--server
   document.getElementById('content')
 );
+
+$(document).ready(function () {
+    toggleSlideout = function () {
+        var slideout = $("#slideout");
+        if ($(slideout).width() > 0) {
+            slideout.css("width", 0);
+        }
+        else {
+            slideout.css("width", 250);
+        }
+    }
+});

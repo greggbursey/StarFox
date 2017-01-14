@@ -43,7 +43,21 @@ body {
 }
 
 .main-body {
+    top: 50px;
     height: calc(100vh - 50px);
+    width: 100vw;
     padding: 1rem;
     overflow: auto;
+    background: url('Images/kiddo.JPG') center center no-repeat fixed;
+    background-size: cover;
+    position: absolute;
+}
+#slideout {
+    background-color: red;
+    /*width: 250px;*/
+    width: 0;
+    height: calc(100vh - 50px);
+    -moz-transition: .3s ease all;
+    -webkit-transition: .3s ease all;
+    transition: .3s ease all;
 }
