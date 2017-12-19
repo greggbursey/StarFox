@@ -1,0 +1,50 @@
+.btn {
+    /*pseudo class are elements in a certain state*/
+     &:link,
+     &:visited {
+        text-transform: uppercase;
+        text-decoration: none;
+        padding: 1.5rem 4rem;
+        display: inline-block;
+        border-radius: 10rem;
+        transition: all .2s;
+        position: relative;
+        font-size: 1.6rem;
+        }
+        &:hover {
+            transform: translateY(-.3rem);
+            box-shadow: 0 1rem 2rem rgba($color-black, .2);/*x y blur color*/
+            &::after {
+                transform: scaleX(1.4) scaleY(1.6);
+                opacity: 0;
+            }
+        }
+        &:active {
+            transform: translateY(-.1rem);
+            box-shadow: 0 .5rem 1rem rgba($color-black, .2);/*x y blur color*/
+        }
+        &--white {
+            background-color: $color-white;
+            color: $color-grey-dark;
+            &::after {
+                background-color: $color-white;
+            }
+        }
+        /*after / before is like adding a virtual element...treated like a 'child'*/
+        &::after {
+            content: "";/*required - or it will not appear*/
+            display: inline-block;/*required - or it will not appear*/
+            height: 100%;
+            width: 100%;
+            border-radius: 10rem;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            transition: all .4s;
+        }
+        &--animated {
+            animation: moveInButton .5s ease-out .75s;
+            animation-fill-mode: backwards;/*apply 0% styles before animation start*/
+        }
+    }

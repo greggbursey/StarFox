@@ -1,0 +1,11 @@
+--COMPILE SASS
+to compile SASS
+1) open command prompt
+2) navigate to the project directory
+3) run 'npm run compile:sass'
+
+--LIVE SERVER
+to start live server:
+1) open command prompt
+2) navigate to the project directory
+3) run 'live-server' (since it is installed globally)
