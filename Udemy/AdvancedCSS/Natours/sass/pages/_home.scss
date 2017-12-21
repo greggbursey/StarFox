@@ -3,3 +3,24 @@
     padding: 25rem 0;
     margin-top: -20vh;
 }
+
+.section-features {
+    padding: 20rem 0;
+    background-image: linear-gradient(
+        to right bottom,
+        rgba($color-primary-light, 0.800),
+        rgba($color-primary-dark, 0.800)),
+        url('../img/nat-4.jpg');/*basically two backgrounds one on top of the other / ..is one level up*/
+        background-size: cover;
+    transform: skewY(-7deg);
+    // margin-top: -10rem;
+    margin-top: -12vh;
+
+    /*
+    the > sign means direct child
+    the * is the universal selector
+    */
+    & > * {
+        transform: skewY(7deg);
+    }
+}
