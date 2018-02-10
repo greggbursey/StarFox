@@ -1,0 +1,7 @@
+@mixin clearfix {
+    &::after {
+        content: "";//necessary or blank
+        display: table;
+        clear: both;
+    }
+}
