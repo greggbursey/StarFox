@@ -156,8 +156,6 @@ body {
     animation: moveInButton .5s ease-out .75s;
     animation-fill-mode: backwards;
     /*apply 0% styles before animation start*/ }
-
-<<<<<<< HEAD:Udemy/AdvancedCSS/Natours/starter/css/style.css
 .card {
   perspective: 150rem;
   -moz-perspective: 150rem;
@@ -185,7 +183,7 @@ body {
     transform: rotateY(180deg); }
   .card:hover .card__side--back {
     transform: rotateY(0); }
-=======
+
 .btn-text:link, .btn-text:visited {
   font-size: 1.6rem;
   color: #55c57a;
@@ -252,8 +250,6 @@ body {
     color: transparent; }
   .feature-box:hover {
     transform: translateY(-1.5rem) scale(1.03); }
->>>>>>> 93052acef131d8b63c75f0345090ecb39a699a36:Udemy/AdvancedCSS/Natours/css/style.css
-
 /**/
 .row {
   max-width: 114rem;
@@ -314,7 +310,6 @@ body {
 
 .section-features {
   padding: 20rem 0;
-<<<<<<< HEAD:Udemy/AdvancedCSS/Natours/starter/css/style.css
   background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.8), rgba(40, 180, 133, 0.8)), url(../img/nat-4.jpg);
   background-size: cover;
   transform: skewY(-7deg);
@@ -325,17 +320,21 @@ body {
 .section-tours {
   background-color: #f7f7f7;
   padding: 25rem 0 50rem 0;
-  margin-top: -10rem; }
-=======
-  background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.8), rgba(40, 180, 133, 0.8)), url("../img/nat-4.jpg");
+  margin-top: -10rem;
+  background-image: linear-gradient(
+    to right bottom,
+    rgba(126, 213, 111, 0.8),
+    rgba(40, 180, 133, 0.8)),
+    url("../img/nat-4.jpg");
   /*basically two backgrounds one on top of the other / ..is one level up*/
   background-size: cover;
   transform: skewY(-7deg);
   margin-top: -12vh;
+  }
   /*
     the > sign means direct child
     the * is the universal selector
-    */ }
+    */ 
   .section-features > * {
-    transform: skewY(7deg); }
->>>>>>> 93052acef131d8b63c75f0345090ecb39a699a36:Udemy/AdvancedCSS/Natours/css/style.css
+    transform: skewY(7deg);
+  }
