@@ -1,0 +1,55 @@
+<html>
+
+    <head>
+        <title>Flikr Search Page</title>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css" integrity="sha384-v2Tw72dyUXeU3y4aM2Y0tBJQkGfplr39mxZqlTBDUZAb9BGoC40+rdFCG0m10lXk" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/fontawesome.css" integrity="sha384-q3jl8XQu1OpdLgGFvNRnPdj5VIlCvgsDQTQB6owSOHWlAurxul7f+JpUOVdAiJ5P" crossorigin="anonymous">
+        <style type="text/css">
+            body {
+                margin: 0;
+                padding: 1rem;
+                overflow: hidden;
+            }
+            * {
+                font-family: sans-serif, sans;
+            }
+            img {
+                padding: .5rem;
+                cursor: pointer;
+                transition: .5s ease transform;
+            }
+
+            img:hover {
+                transform: scale(.8);
+            }
+
+            img.active {
+                transform: scale(2);
+                z-index: 10;
+            }
+            input[type=search]{
+                padding: 1rem .5rem;
+                font-size: 20px;
+            }
+            .fa {
+                font-size: 3rem;
+                color: orangered;
+            }
+        </style>
+    </head>
+
+    <body>
+        <h1>Flikr Images</h1>
+        <p>Search for Flickr images containing pictures of Matt, Emery, Todd, or other various animals - let your imagination go wild!</p>
+        <div id="search-container">
+            <input type="search" id="flickr-search" placeholder="Type to begin searching">
+        </div>
+        <div id="flickr-container"></div>
+        <!-- jquery -->
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+        <!-- internal -->
+        <script type="text/javascript" src="app.js"></script>
+    </body>
+
+</html>

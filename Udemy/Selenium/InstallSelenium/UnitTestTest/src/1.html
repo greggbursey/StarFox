@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>c:\users\gbursey\desktop\playground\selenium - udemy\installselenium\installselenium\unittest1.cs</title>
+    <script type="text/javascript" src="../js/dotcover.sourceview.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/dotcover.report.css" />
+  </head>
+  <body>
+    <pre id="content" class="source-code">
+using System.IO;
+using System.Reflection;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
+
+namespace InstallSelenium
+{
+    [TestClass]
+    public class UnitTest1
+    {
+        [TestMethod]
+        public void ChromeDriver_TEST()
+        {
+            //var driver = new ChromeDriver();
+
+            var driver = GetChromeDriver();
+            driver.Navigate().GoToUrl(&quot;http://www.ultimateqa.com&quot;);
+        }
+
+        private IWebDriver GetChromeDriver()
+        {
+            var outputDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+
+            return new ChromeDriver(outputDir);
+        }
+
+        [TestMethod]
+        public void SeleniumNavigationTest()
+        {
+            var driver = GetChromeDriver();
+            var baseURL = &quot;http://www.ultimateqa.com/&quot;;
+            
+            driver.Navigate().GoToUrl(baseURL);
+            Assert.IsNotNull(driver.Title);
+
+            driver.Navigate().GoToUrl(baseURL + &quot;automation&quot;);
+            Assert.IsNotNull(driver.Title);
+
+            driver.Navigate().GoToUrl(baseURL + &quot;automation&quot;);
+            var complicatedElement = driver.FindElement(By.XPath(&quot;//a[contains(@href, &#39;complicated-page&#39;)]&quot;));
+            complicatedElement.Click();
+            Assert.AreEqual(&quot;Complicated Page - Ultimate QA&quot;, driver.Title);
+
+            driver.Navigate().Back();
+            Assert.AreEqual(&quot;Automation Practice - Ultimate QA&quot;, driver.Title);
+        }
+    }
+}
+
+    </pre>
+    <script type="text/javascript">
+      highlightRanges([[14,9,14,10,0],[17,13,17,44,0],[18,13,18,68,0],[19,9,19,10,0],[22,9,22,10,1],[23,13,23,93,1],[25,13,25,48,1],[26,9,26,10,1],[30,9,30,10,1],[31,13,31,44,1],[32,13,32,56,1],[34,13,34,48,1],[35,13,35,44,1],[37,13,37,63,1],[38,13,38,44,1],[40,13,40,63,1],[41,13,41,111,1],[42,13,42,40,1],[43,13,43,77,1],[45,13,45,38,1],[46,13,46,80,1],[47,9,47,10,1]]);
+    </script>
+  </body>
+</html>
