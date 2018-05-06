@@ -11,14 +11,26 @@ namespace PageObject_1st_Draft.Tests
     [Category("Where is this showing up")]
     public class PageTest
     {
-        [SetUp]
-        public IWebDriver GetDriver()
+        private IWebDriver _driver;
+
+        private IWebDriver GetDriver()
         {
             var outputDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             return new ChromeDriver(outputDir);
         }
 
+        [SetUp]
+        public void Setup()
+        {
+            _driver = GetDriver();
+            _driver.Manage().Window.Maximize();
+        }
+
         [TearDown]
+        public void TearDown()
+        {
+            _driver.Quit();
+        }
 
         [Test]
         // 1 - go to main qa site
@@ -26,7 +38,11 @@ namespace PageObject_1st_Draft.Tests
         // 3 - assert you're on the right page
         public void TestMethod1()
         {
-            var x = new MainQaPage(GetDriver());
+            var x = new MainQaPage(_driver);
+            x.GoToMainPage();
+            x.ClickSignInLink();
+            x.SearchFor("complicated page");
+            Assert.AreEqual(_driver.Url, "https://www.ultimateqa.com/?s=complicated+page");
         }
     }
 }
