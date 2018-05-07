@@ -8,6 +8,6 @@ namespace PageObject_1st_Draft.Pages
         {
             Driver = driver;
         }
-        public IWebDriver Driver { get; set; }
+        protected IWebDriver Driver { get; set; }
     }
 }
