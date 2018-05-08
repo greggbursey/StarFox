@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using System.Reflection;
+using AutomationResources;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -13,16 +14,11 @@ namespace PageObject_1st_Draft.Tests
     {
         private IWebDriver _driver;
 
-        private IWebDriver GetDriver()
-        {
-            var outputDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            return new ChromeDriver(outputDir);
-        }
-
         [SetUp]
         public void Setup()
         {
-            _driver = GetDriver();
+            var factory = new WebDriverFactory();
+            _driver = factory.Create(BrowserType.Chrome);
             _driver.Manage().Window.Maximize();
         }
 
