@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27428.2043
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PageObject_1st_Draft", "PageObject_1st_Draft\PageObject_1st_Draft.csproj", "{C120597F-F9DE-42F4-AEC4-2BF65126DF67}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PageObjects", "PageObject_1st_Draft\PageObjects.csproj", "{C120597F-F9DE-42F4-AEC4-2BF65126DF67}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutomationResources", "AutomationResources\AutomationResources.csproj", "{B92C0381-BDDF-4527-B089-D38C3E6D341A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PageObjectTests", "PageObjectTests\PageObjectTests.csproj", "{680F2F17-9D40-46DB-9411-94C56F6190D1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{B92C0381-BDDF-4527-B089-D38C3E6D341A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B92C0381-BDDF-4527-B089-D38C3E6D341A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B92C0381-BDDF-4527-B089-D38C3E6D341A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{680F2F17-9D40-46DB-9411-94C56F6190D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{680F2F17-9D40-46DB-9411-94C56F6190D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{680F2F17-9D40-46DB-9411-94C56F6190D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{680F2F17-9D40-46DB-9411-94C56F6190D1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

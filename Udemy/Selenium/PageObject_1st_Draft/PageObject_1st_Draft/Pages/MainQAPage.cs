@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Support.Extensions;
 
 namespace PageObject_1st_Draft.Pages
 {
@@ -20,6 +21,9 @@ namespace PageObject_1st_Draft.Pages
             var searchField = Driver.FindElement(By.ClassName("et-search-field"));
             searchField.SendKeys(term);
             searchField.SendKeys(Keys.Enter);
+
+            var screenshot = Driver.TakeScreenshot();
+            screenshot.SaveAsFile(@"D:\SeleniumTestingScreenshot.png");
         }
     }
 }
