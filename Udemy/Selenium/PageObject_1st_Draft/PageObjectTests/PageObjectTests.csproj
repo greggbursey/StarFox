@@ -47,8 +47,11 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
-    <Reference Include="WebDriver, Version=3.11.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Selenium.WebDriver.3.11.2\lib\net45\WebDriver.dll</HintPath>
+    <Reference Include="WebDriver, Version=3.12.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Selenium.WebDriver.3.12.0\lib\net45\WebDriver.dll</HintPath>
+    </Reference>
+    <Reference Include="WebDriver.Support, Version=3.12.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Selenium.Support.3.12.0\lib\net45\WebDriver.Support.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -65,7 +68,7 @@
       <Name>AutomationResources</Name>
     </ProjectReference>
     <ProjectReference Include="..\PageObject_1st_Draft\PageObjects.csproj">
-      <Project>{c120597f-f9de-42f4-aec4-2bf65126df67}</Project>
+      <Project>{C120597F-F9DE-42F4-AEC4-2BF65126DF67}</Project>
       <Name>PageObjects</Name>
     </ProjectReference>
   </ItemGroup>
