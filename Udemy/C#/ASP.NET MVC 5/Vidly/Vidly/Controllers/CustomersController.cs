@@ -11,10 +11,10 @@ namespace Vidly.Controllers
         //[ActionName("Index")]
         public ActionResult Index()
         {
-            var customer = new Customer();
+            var custData = new CustomerData();
             var viewModel = new RandomMovieViewModel
             {
-                Customers = customer.GetCustomers()
+                Customers = custData.GetCustomers()
             };
 
             return View(viewModel);
@@ -22,7 +22,24 @@ namespace Vidly.Controllers
 
         public ActionResult Details(string id)
         {
-            return View();
+            var custData = new CustomerData();
+            var customers = new List<Customer>();
+
+            foreach (var cust in custData.GetCustomers())
+            {
+                if (cust.Id.ToString() == id)
+                {
+                    customers.Add(cust);
+                    break;
+                }
+            }
+
+            var viewModel = new RandomMovieViewModel
+            {
+                Customers = customers
+            };
+
+            return View(viewModel);
         }
     }
 }

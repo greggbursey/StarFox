@@ -15,11 +15,11 @@ namespace Vidly.Controllers
                 Name = "Shrek!"
             };
 
-            var customer = new Customer();
+            var custData = new CustomerData();
             var viewModel = new RandomMovieViewModel
             {
                 Movie = movie,
-                Customers = customer.GetCustomers()
+                Customers = custData.GetCustomers()
             };
 
             //ViewData["Movie"] = movie;//--not great
