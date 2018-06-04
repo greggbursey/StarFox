@@ -23,7 +23,7 @@
                     <td>
                         <a>@customer.Name</a>
                     </td>
-                    <td>@Html.ActionLink("View Customer Data", "Details", "Customers")</td>
+                    <td>@Html.ActionLink("View Customer Data", "Details", new { id = customer.Id }, null)</td>
                 </tr>
             }
         </tbody>
