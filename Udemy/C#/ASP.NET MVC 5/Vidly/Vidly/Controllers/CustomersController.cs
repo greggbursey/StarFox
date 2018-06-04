@@ -1,49 +1,56 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 using Vidly.Models;
-using Vidly.ViewModels;
 
 namespace Vidly.Controllers
 {
     public class CustomersController : Controller
     {
-        // GET: Customers
-        //[ActionName("Index")]
-        public ActionResult Index()
-        {
-            var custData = new CustomerData();
-            var viewModel = new RandomMovieViewModel
-            {
-                Customers = custData.GetCustomers()
-            };
+        private ApplicationDbContext _context;
 
-            return View(viewModel);
+        public CustomersController()
+        {
+            _context = new ApplicationDbContext();
         }
+
+        protected override void Dispose(bool disposing)
+        {
+            _context.Dispose();
+        }
+
+        public ViewResult Index()
+        {
+            //var customers = _context.Customers;// DB will not be queried until it is iterated over (like we are doing in the view)
+            var customers = _context.Customers.ToList();//immediately executes the query
+
+            return View(customers);
+        }
+
+        //// GET: Customers
+        ////[ActionName("Index")]
+        //public ActionResult Index()
+        //{
+        //    var custData = new CustomerData();
+        //    var viewModel = new RandomMovieViewModel
+        //    {
+        //        Customers = custData.GetCustomers()
+        //    };
+
+        //    return View(viewModel);
+        //}
 
         public ActionResult Details(int? id)
         {
             if (!id.HasValue)
                 throw new ArgumentNullException("Id cannot be null");
 
-            var custData = new CustomerData();
-            var customers = new List<Customer>();
+            var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
 
-            foreach (var cust in custData.GetCustomers())
-            {
-                if (cust.Id == id)
-                {
-                    customers.Add(cust);
-                    break;
-                }
-            }
+            if (customer == null)
+                return HttpNotFound();
 
-            var viewModel = new RandomMovieViewModel
-            {
-                Customers = customers
-            };
-
-            return View(viewModel);
+            return View(customer);
         }
     }
 }

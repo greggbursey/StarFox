@@ -1,4 +1,4 @@
-﻿@model Vidly.ViewModels.RandomMovieViewModel
+﻿@model Vidly.Models.Customer
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -6,5 +6,5 @@
 
 <h1>Hello</h1>
 <p>
-    This customer's name is @Model.Customers[0].Name . And their favorite number is @Model.Customers[0].Id !
+    This customer's name is @Model.Name . And their favorite number is @Model.Id !
 </p>

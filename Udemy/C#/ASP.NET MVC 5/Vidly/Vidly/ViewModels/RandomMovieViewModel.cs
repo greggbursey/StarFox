@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using System.Data.Entity;
 using Vidly.Models;
 
 namespace Vidly.ViewModels
@@ -6,6 +6,6 @@ namespace Vidly.ViewModels
     public class RandomMovieViewModel
     {
         public Movie Movie { get; set; }
-        public List<Customer> Customers { get; set; }
+        public DbSet<Customer> Customers { get; set; }
     }
 }

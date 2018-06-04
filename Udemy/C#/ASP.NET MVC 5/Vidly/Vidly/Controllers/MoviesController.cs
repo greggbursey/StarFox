@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Linq;
+using System.Web.Mvc;
 using Vidly.Models;
 using Vidly.ViewModels;
 
@@ -6,6 +7,18 @@ namespace Vidly.Controllers
 {
     public class MoviesController : Controller
     {
+        private ApplicationDbContext _context;
+
+        public MoviesController()
+        {
+            _context = new ApplicationDbContext();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            _context.Dispose();
+        }
+
         // GET: Movies
         public ActionResult Random()
         {
@@ -14,11 +27,10 @@ namespace Vidly.Controllers
                 Name = "Shrek!"
             };
 
-            var custData = new CustomerData();
             var viewModel = new RandomMovieViewModel
             {
                 Movie = movie,
-                Customers = custData.GetCustomers()
+                Customers = _context.Customers
             };
 
             //ViewData["Movie"] = movie;//--not great

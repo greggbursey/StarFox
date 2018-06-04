@@ -4,7 +4,7 @@
 @*@model Vidly.Models.Movie*@
 <!-- this is better -->
 @model Vidly.ViewModels.RandomMovieViewModel
-@{
+@{ 
     ViewBag.Title = "Random";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -23,11 +23,11 @@
     on multiple lines
 *@
 @{
-    var className = Model.Customers.Count > 1 ? "popular" : null;
+    var className = Model.Customers.ToList().Count > 1 ? "popular" : null;
 }
 <h2 class="@className">@Model.Movie.Name</h2>
 
-@if (Model.Customers.Count == 0)
+@if (Model.Customers.ToList().Count == 0)
 {
     <p>No one has rented this movie before.</p>
 }
