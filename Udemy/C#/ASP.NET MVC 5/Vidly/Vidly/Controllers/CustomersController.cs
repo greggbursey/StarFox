@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
 using Vidly.Models;
@@ -22,7 +23,9 @@ namespace Vidly.Controllers
         public ViewResult Index()
         {
             //var customers = _context.Customers;// DB will not be queried until it is iterated over (like we are doing in the view)
-            var customers = _context.Customers.ToList();//immediately executes the query
+            var customers = _context.Customers
+                .Include(c => c.MembershipType)//entity framework does not include sub-members by default, using .Include makes it do that
+                .ToList();//immediately executes the query
 
             return View(customers);
         }
