@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Vidly.Models
+﻿namespace Vidly.Models
 {
     public class Customer
     {

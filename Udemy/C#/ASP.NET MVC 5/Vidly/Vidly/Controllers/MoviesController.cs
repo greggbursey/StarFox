@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using Vidly.Models;
 using Vidly.ViewModels;
 
@@ -47,7 +46,7 @@ namespace Vidly.Controllers
 
             return Content(string.Format("pageIndex={0}&sortBy={1}", pageIndex, sortBy));
         }
-        
+
         //this [Route()] attribute allows for a custom route to be placed here instead of routeconfig.cs
         //the regex part allows for constraints
         [Route("movies/released/{year:regex(\\d{4})}/{month:regex(\\d{2}):range(1, 12)}")]
