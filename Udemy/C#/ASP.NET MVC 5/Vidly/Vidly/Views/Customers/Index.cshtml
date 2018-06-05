@@ -28,7 +28,7 @@
                 <td>@customer.MembershipType.Name</td>
                 <td>@customer.MembershipType.DiscountRate%</td>
                 @*<td>@Html.ActionLink("View Customer Data", "Details", new { id = customer.Id }, null)</td>*@
-                <td>@Html.ActionLink("View Customer Data", "Edit", new { id = customer.Id }, null)</td>
+                <td>@Html.ActionLink("Edit Customer", "Edit", new { id = customer.Id }, null)</td>
             </tr>
             }
         </tbody>

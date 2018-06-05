@@ -38,7 +38,14 @@
     </thead>
     <tbody>
         <tr>
-            <td>@Model.Movie.Genre</td>
+            @if (Model.Movie.Genre != null)
+            {
+                <td>@Model.Movie.Genre.Name</td>
+            }
+            else
+            {
+                <td><em>No Genre</em></td>
+            }
             <td>@Model.Movie.ReleaseDate</td>
             <td>@Model.Movie.DateAdded</td>
             <td>@Model.Movie.NumberInStock</td>
