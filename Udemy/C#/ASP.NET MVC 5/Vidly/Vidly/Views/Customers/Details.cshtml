@@ -4,7 +4,28 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Hello</h1>
-<p>
-    This customer's name is @Model.Name . And their favorite number is @Model.Id !
-</p>
+<h2>@Model.Name</h2>
+
+<table class="table table-hover table-striped">
+    <thead>
+        <tr>
+            <th>Membership Type</th>
+            <th>Birthday</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>@Model.MembershipType.Name</td>
+            <td>
+                @if (Model.Birthday.HasValue)
+                {
+                    @Model.Birthday
+                }
+                else
+                {
+                    <em>Not set</em>
+                }
+            </td>
+        </tr>
+    </tbody>
+</table>

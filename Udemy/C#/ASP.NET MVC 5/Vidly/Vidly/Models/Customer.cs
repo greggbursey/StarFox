@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Vidly.Models
 {
@@ -16,5 +17,6 @@ namespace Vidly.Models
         public MembershipType MembershipType { get; set; }
         //entity framework recognizes this convention and treats this property as a foreign key
         public byte MembershipTypeID { get; set; }
+        public DateTime? Birthday { get; set; }
     }
 }

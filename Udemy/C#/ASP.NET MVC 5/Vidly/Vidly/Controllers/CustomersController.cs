@@ -48,7 +48,9 @@ namespace Vidly.Controllers
             if (!id.HasValue)
                 throw new ArgumentNullException("Id cannot be null");
 
-            var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
+            var customer = _context.Customers
+                .Include(c => c.MembershipType)//entity framework does not include sub-members by default, using .Include makes it do that
+                .SingleOrDefault(c => c.Id == id);
 
             if (customer == null)
                 return HttpNotFound();
