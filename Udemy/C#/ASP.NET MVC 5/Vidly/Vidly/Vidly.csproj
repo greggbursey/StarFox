@@ -228,6 +228,10 @@
     <Compile Include="Migrations\201806051259134_MembershipTypeNameProperty.Designer.cs">
       <DependentUpon>201806051259134_MembershipTypeNameProperty.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806051401275_MembershipTypeNamePropFromDB.cs" />
+    <Compile Include="Migrations\201806051401275_MembershipTypeNamePropFromDB.Designer.cs">
+      <DependentUpon>201806051401275_MembershipTypeNamePropFromDB.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -336,6 +340,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806051259134_MembershipTypeNameProperty.resx">
       <DependentUpon>201806051259134_MembershipTypeNameProperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806051401275_MembershipTypeNamePropFromDB.resx">
+      <DependentUpon>201806051401275_MembershipTypeNamePropFromDB.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
