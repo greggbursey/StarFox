@@ -236,6 +236,10 @@
     <Compile Include="Migrations\201806051412404_CustomerBirthdayProperty.Designer.cs">
       <DependentUpon>201806051412404_CustomerBirthdayProperty.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806051428561_MoviesInitialDBModel.cs" />
+    <Compile Include="Migrations\201806051428561_MoviesInitialDBModel.Designer.cs">
+      <DependentUpon>201806051428561_MoviesInitialDBModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -350,6 +354,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806051412404_CustomerBirthdayProperty.resx">
       <DependentUpon>201806051412404_CustomerBirthdayProperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806051428561_MoviesInitialDBModel.resx">
+      <DependentUpon>201806051428561_MoviesInitialDBModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

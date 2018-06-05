@@ -27,17 +27,21 @@
 }
 <h2 class="@className">@Model.Movie.Name</h2>
 
-@if (Model.Customers.ToList().Count == 0)
-{
-    <p>No one has rented this movie before.</p>
-}
-else
-{
-    <ul>
-        @foreach (var customer in Model.Customers)
-        {
-            <li>@customer.Name</li>
-        }
-    </ul>
-
-}
+<table class="table table-hover table-striped">
+    <thead>
+        <tr>
+            <th>Genre</th>
+            <th>Release Date</th>
+            <th>Date Added</th>
+            <th>Number in Stock</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>@Model.Movie.Genre</td>
+            <td>@Model.Movie.ReleaseDate</td>
+            <td>@Model.Movie.DateAdded</td>
+            <td>@Model.Movie.NumberInStock</td>
+        </tr>
+    </tbody>
+</table>

@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Web.Mvc;
 using Vidly.Models;
 using Vidly.ViewModels;
@@ -22,14 +23,13 @@ namespace Vidly.Controllers
         // GET: Movies
         public ActionResult Random()
         {
-            var movie = new Movie()
-            {
-                Name = "Shrek!"
-            };
+            var movies = _context.Movies.ToList();
+            var random = new Random();
+            var randomIndex = random.Next(0, movies.Count - 1);
 
             var viewModel = new RandomMovieViewModel
             {
-                Movie = movie,
+                Movie = movies[randomIndex],
                 Customers = _context.Customers
             };
 
