@@ -7,7 +7,7 @@ namespace Vidly.Models
         public int Id { get; set; }
 
         // Data annotations
-        // makes column name NOT nullable
+        // makes column name NOT null-able
         [Required]
         // overriding the default convention
         [StringLength(255)]

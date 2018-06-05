@@ -200,6 +200,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MoviesController.cs" />
+    <Compile Include="Enums\MembershipType.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -222,6 +223,10 @@
     <Compile Include="Migrations\201806042107474_ApplyAnnotationsToCustomerName.cs" />
     <Compile Include="Migrations\201806042107474_ApplyAnnotationsToCustomerName.Designer.cs">
       <DependentUpon>201806042107474_ApplyAnnotationsToCustomerName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806051259134_MembershipTypeNameProperty.cs" />
+    <Compile Include="Migrations\201806051259134_MembershipTypeNameProperty.Designer.cs">
+      <DependentUpon>201806051259134_MembershipTypeNameProperty.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -328,6 +333,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806042107474_ApplyAnnotationsToCustomerName.resx">
       <DependentUpon>201806042107474_ApplyAnnotationsToCustomerName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806051259134_MembershipTypeNameProperty.resx">
+      <DependentUpon>201806051259134_MembershipTypeNameProperty.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
