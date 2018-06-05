@@ -20,15 +20,16 @@
         <tbody>
             @foreach (var customer in Model)
             {
-                <tr>
-                    <td>@customer.Id</td>
-                    <td>
-                        <a>@customer.Name</a>
-                    </td>
-                    <td>@customer.MembershipType.Name</td>
-                    <td>@customer.MembershipType.DiscountRate%</td>
-                    <td>@Html.ActionLink("View Customer Data", "Details", new { id = customer.Id }, null)</td>
-                </tr>
+            <tr>
+                <td>@customer.Id</td>
+                <td>
+                    <a>@customer.Name</a>
+                </td>
+                <td>@customer.MembershipType.Name</td>
+                <td>@customer.MembershipType.DiscountRate%</td>
+                @*<td>@Html.ActionLink("View Customer Data", "Details", new { id = customer.Id }, null)</td>*@
+                <td>@Html.ActionLink("View Customer Data", "Edit", new { id = customer.Id }, null)</td>
+            </tr>
             }
         </tbody>
     </table>

@@ -3,6 +3,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
 using Vidly.Models;
+using Vidly.ViewModels;
 
 namespace Vidly.Controllers
 {
@@ -18,6 +19,50 @@ namespace Vidly.Controllers
         protected override void Dispose(bool disposing)
         {
             _context.Dispose();
+        }
+
+        [HttpPost]
+        public ActionResult Save(Customer customer)
+        {
+            if (customer != null && !String.IsNullOrWhiteSpace(customer.Name))
+            {
+                if (customer.Id == 0)
+                {
+                    _context.Customers.Add(customer);
+                }
+                else
+                {
+                    var customerInDb = _context.Customers.Single(c => c.Id == customer.Id);
+
+                    /*
+                     * opens up security holes in the app - meaning, they could even update the ID - malicious users
+                     * not easy to refactor
+                     * the 3rd argument (the magic strings) are 'white listing' the properties to be updated
+                     */
+                    //TryUpdateModel(customerInDb, "", new string[] { "Name", "Email" });
+
+                    customerInDb.Name = customer.Name;
+                    customerInDb.Birthday = customer.Birthday;
+                    customerInDb.MembershipTypeID = customer.MembershipTypeID;
+                    customerInDb.IsSubscribedToNewsLetter = customer.IsSubscribedToNewsLetter;
+                }
+                    
+                _context.SaveChanges();
+            }
+
+            //return View();
+            return RedirectToAction("Index", "Customers");
+        }
+
+        public ActionResult New()
+        {
+            var membershipTypes = _context.MembershipTypes.ToList();
+            var vm = new CustomerFormViewModel
+            {
+                MembershipTypes = membershipTypes
+            };
+
+            return View("CustomerForm", vm);
         }
 
         public ViewResult Index()
@@ -43,11 +88,8 @@ namespace Vidly.Controllers
         //    return View(viewModel);
         //}
 
-        public ActionResult Details(int? id)
+        public ActionResult Details(int id)
         {
-            if (!id.HasValue)
-                throw new ArgumentNullException("Id cannot be null");
-
             var customer = _context.Customers
                 .Include(c => c.MembershipType)//entity framework does not include sub-members by default, using .Include makes it do that
                 .SingleOrDefault(c => c.Id == id);
@@ -56,6 +98,21 @@ namespace Vidly.Controllers
                 return HttpNotFound();
 
             return View(customer);
+        }
+
+        public ActionResult Edit(int id)
+        {
+            var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
+            if (customer == null)
+                return HttpNotFound();
+
+            var viewModel = new CustomerFormViewModel
+            {
+                Customer = customer,
+                MembershipTypes = _context.MembershipTypes.ToList()
+            };
+
+            return View("CustomerForm", viewModel);
         }
     }
 }
