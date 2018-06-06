@@ -33,6 +33,7 @@
         @Html.ValidationMessageFor(m => m.Movie.NumberInStock)
     </div>
 
+    @*@Html.Hidden("Movie.Id", (Model.Movie != null) ? Model.Movie.Id: 0)*@
     @Html.HiddenFor(m => m.Movie.Id)
     @Html.HiddenFor(m => m.Movie.DateAdded)
 
