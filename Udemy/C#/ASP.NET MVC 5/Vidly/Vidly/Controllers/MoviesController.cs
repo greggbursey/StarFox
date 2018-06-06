@@ -4,6 +4,7 @@ using System.Web.Mvc;
 using Vidly.Models;
 using Vidly.ViewModels;
 using System.Data.Entity;
+using System.Data.Entity.Validation;
 
 namespace Vidly.Controllers
 {
@@ -129,8 +130,14 @@ namespace Vidly.Controllers
                     movieInDb.NumberInStock = movie.NumberInStock;
                     movieInDb.GenreID = movie.GenreID;
                 }
-
-                _context.SaveChanges();
+                try
+                {
+                    _context.SaveChanges();
+                }
+                catch (DbEntityValidationException e)
+                {
+                    Console.WriteLine(e);
+                }
             }
 
             //return View();
