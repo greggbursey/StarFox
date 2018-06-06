@@ -105,39 +105,48 @@ namespace Vidly.Controllers
             return View("MovieForm", viewModel);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Save(Movie movie)
         {
-            if (movie != null && !String.IsNullOrWhiteSpace(movie.Name))
+            if (!ModelState.IsValid)
             {
-                if (movie.Id == 0)
+                var viewModel = new MovieFormViewModel
                 {
-                    _context.Movies.Add(movie);
-                }
-                else
-                {
-                    var movieInDb = _context.Movies.Single(c => c.Id == movie.Id);
+                    Movie = movie,
+                    Genres = _context.Genres.ToList()
+                };
+                return View("MovieForm", viewModel);
+            }
 
-                    /*
-                     * opens up security holes in the app - meaning, they could even update the ID - malicious users
-                     * not easy to refactor
-                     * the 3rd argument (the magic strings) are 'white listing' the properties to be updated
-                     */
-                    //TryUpdateModel(customerInDb, "", new string[] { "Name", "Email" });
+            if (movie.Id == 0)
+            {
+                _context.Movies.Add(movie);
+            }
+            else
+            {
+                var movieInDb = _context.Movies.Single(c => c.Id == movie.Id);
 
-                    movieInDb.Name = movie.Name;
-                    movieInDb.DateAdded = movie.DateAdded;
-                    movieInDb.ReleaseDate = movie.ReleaseDate;
-                    movieInDb.NumberInStock = movie.NumberInStock;
-                    movieInDb.GenreID = movie.GenreID;
-                }
-                try
-                {
-                    _context.SaveChanges();
-                }
-                catch (DbEntityValidationException e)
-                {
-                    Console.WriteLine(e);
-                }
+                /*
+                 * opens up security holes in the app - meaning, they could even update the ID - malicious users
+                 * not easy to refactor
+                 * the 3rd argument (the magic strings) are 'white listing' the properties to be updated
+                 */
+                //TryUpdateModel(customerInDb, "", new string[] { "Name", "Email" });
+
+                movieInDb.Name = movie.Name;
+                movieInDb.DateAdded = movie.DateAdded;
+                movieInDb.ReleaseDate = movie.ReleaseDate;
+                movieInDb.NumberInStock = movie.NumberInStock;
+                movieInDb.GenreID = movie.GenreID;
+            }
+            try
+            {
+                _context.SaveChanges();
+            }
+            catch (DbEntityValidationException e)
+            {
+                Console.WriteLine(e);
             }
 
             //return View();
@@ -149,6 +158,7 @@ namespace Vidly.Controllers
             var membershipTypes = _context.MembershipTypes.ToList();
             var vm = new MovieFormViewModel
             {
+                Movie = new Movie(),
                 Genres = _context.Genres.ToList()
             };
 
