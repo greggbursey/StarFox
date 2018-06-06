@@ -28,5 +28,6 @@
             //    return null;
             //}
         }
+        public static readonly byte Unknown = 0;
     }
 }

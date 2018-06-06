@@ -25,37 +25,43 @@ namespace Vidly.Controllers
         [HttpPost]
         public ActionResult Save(Customer customer)
         {
-            if (customer != null && !String.IsNullOrWhiteSpace(customer.Name))
+            if (!ModelState.IsValid)
             {
-                if (customer.Id == 0)
+                var viewModel = new CustomerFormViewModel
                 {
-                    _context.Customers.Add(customer);
-                }
-                else
-                {
-                    var customerInDb = _context.Customers.Single(c => c.Id == customer.Id);
+                    Customer = customer,
+                    MembershipTypes = _context.MembershipTypes.ToList()
+                };
+                return View("CustomerForm", viewModel);
+            }
 
-                    /*
-                     * opens up security holes in the app - meaning, they could even update the ID - malicious users
-                     * not easy to refactor
-                     * the 3rd argument (the magic strings) are 'white listing' the properties to be updated
-                     */
-                    //TryUpdateModel(customerInDb, "", new string[] { "Name", "Email" });
+            if (customer.Id == 0)
+            {
+                _context.Customers.Add(customer);
+            }
+            else
+            {
+                var customerInDb = _context.Customers.Single(c => c.Id == customer.Id);
 
-                    customerInDb.Name = customer.Name;
-                    customerInDb.Birthday = customer.Birthday;
-                    customerInDb.MembershipTypeID = customer.MembershipTypeID;
-                    customerInDb.IsSubscribedToNewsLetter = customer.IsSubscribedToNewsLetter;
-                }
+                /*
+                 * opens up security holes in the app - meaning, they could even update the ID - malicious users
+                 * not easy to refactor
+                 * the 3rd argument (the magic strings) are 'white listing' the properties to be updated
+                 */
+                //TryUpdateModel(customerInDb, "", new string[] { "Name", "Email" });
 
-                try
-                {
-                    _context.SaveChanges();
-                }
-                catch (DbEntityValidationException e)
-                {
-                    Console.WriteLine(e);
-                }
+                customerInDb.Name = customer.Name;
+                customerInDb.Birthday = customer.Birthday;
+                customerInDb.MembershipTypeID = customer.MembershipTypeID;
+                customerInDb.IsSubscribedToNewsLetter = customer.IsSubscribedToNewsLetter;
+            }
+            try
+            {
+                _context.SaveChanges();
+            }
+            catch (DbEntityValidationException e)
+            {
+                Console.WriteLine(e);
             }
 
             //return View();
@@ -67,6 +73,7 @@ namespace Vidly.Controllers
             var membershipTypes = _context.MembershipTypes.ToList();
             var vm = new CustomerFormViewModel
             {
+                Customer = new Customer(),// initialize properties - ex. Id will be initialized to 0
                 MembershipTypes = membershipTypes
             };
 

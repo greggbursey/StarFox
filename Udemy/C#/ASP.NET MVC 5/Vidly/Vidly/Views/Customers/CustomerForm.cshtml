@@ -7,20 +7,25 @@
 
 @using (Html.BeginForm("Save", "Customers"))
 {
+    @Html.ValidationSummary(true, "Please fix the following errors:")
+
     <div class="form-group">
         @Html.LabelFor(m => m.Customer.Name)
         @Html.TextBoxFor(m => m.Customer.Name, new { @class = "form-control" })
-    </div>
-    <div class="form-group">
-        @*<label for="Birthdate">Date of Birth</label>*@
-        @Html.LabelFor(m => m.Customer.Birthday)
-        @Html.TextBoxFor(m => m.Customer.Birthday, "{0:d MMM yyyy}", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Customer.Name)
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.Customer.MembershipTypeID)
         @Html.DropDownListFor(m => m.Customer.MembershipTypeID,
        new SelectList(Model.MembershipTypes, "Id", "Name"), "Select Membership Type",
        new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Customer.MembershipTypeID)
+    </div>
+    <div class="form-group">
+        @*<label for="Birthdate">Date of Birth</label>*@
+        @Html.LabelFor(m => m.Customer.Birthday)
+        @Html.TextBoxFor(m => m.Customer.Birthday, "{0:d MMM yyyy}", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Customer.Birthday)
     </div>
     <div class="checkbox">
         <label>
