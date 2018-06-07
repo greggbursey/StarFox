@@ -24,6 +24,7 @@ namespace Vidly.Controllers.Api
         //}
         //AFTER DTO
         // GET / api/customers
+        [HttpGet]
         public IEnumerable<CustomerDto> GetCustomers()
         {
             return _context.Customers.ToList()
