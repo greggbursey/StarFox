@@ -1,4 +1,4 @@
-﻿@model List<Vidly.Models.Customer>
+﻿@*@model List<Vidly.Models.Customer>*@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -15,60 +15,104 @@
     </button>
 }
 
-@if (Model.Count > 0)
-{
-    <table class="table table-hover table-striped">
+@*@if (Model.Count > 0)
+{*@
+    <table class="table table-hover table-striped"
+           id="customers">
         <thead>
             <tr>
-                <th>ID</th>
+                @*<th>ID</th>*@
                 <th>Name</th>
                 <th>Membership Type</th>
-                <th>Discount Rate</th>
-                <th>Edit</th>
+                @*<th>Discount Rate</th>
+                <th>Edit</th>*@
                 <th>Delete</th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var customer in Model)
+            @*@foreach (var customer in Model)
             {
-                <tr>
-                    <td>@customer.Id</td>
-                    <td>
-                        <a>@customer.Name</a>
-                    </td>
-                    <td>@customer.MembershipType.Name</td>
-                    <td>@customer.MembershipType.DiscountRate%</td>
-                    @*<td>@Html.ActionLink("View Customer Data", "Details", new { id = customer.Id }, null)</td>*@
-                    <td>@Html.ActionLink("Edit Customer", "Edit", new { id = customer.Id }, null)</td>
-                    <td>
-                        <button class="btn-link"
-                                data-customer-id="@customer.Id">Delete</button>
-                    </td>
-                </tr>
-            }
+            <tr>
+                <td>@customer.Id</td>
+                <td>
+                    <a>@customer.Name</a>
+                </td>
+                <td>@customer.MembershipType.Name</td>
+                <td>@customer.MembershipType.DiscountRate%</td>*@
+                @*<td>@Html.ActionLink("View Customer Data", "Details", new { id = customer.Id }, null)</td>*@
+                @*<td>@Html.ActionLink("Edit Customer", "Edit", new { id = customer.Id }, null)</td>
+                <td>
+                    <button class="btn-link"
+                            data-customer-id="@customer.Id">
+                        Delete
+                    </button>
+                </td>
+            </tr>
+            }*@
+
         </tbody>
     </table>
-}
-else
+@*}*@
+@*else
 {
     <p>There are no customers, yet.</p>
-}
+}*@
 
 @section scripts {
     <script>
-        $(document).ready(function (){
-            $("#customers .js-delete").on("click", function () {
+        $(document).ready(function () {
+
+            var table = $("#customers").DataTable({
+                ajax: {
+                    url: "/api/customers",
+                    dataSrc: ""
+                },
+                columns: [
+                    {
+                        data: "name",
+                        render: function (data, type, customer) {
+                            return "<a href='/customers/edit/>" + customer.id + "'>" +
+                                customer.name + "</a>";
+                        }
+                    },
+                    {
+                        data: "membershipType.name"
+                    },
+                    {
+                        data: "id",
+                        render: function (data) {
+                            return "<button class='btn-link js-delete' data-customer-id=" + data + ">Delete</button>";
+                        }
+                    }
+                ]
+            });
+
+            $("#customers").on("click", ".js-delete" ,function () {
                 var button = $(this);
 
-                if (confirm("Are you sure you want to delete this customer?")) {
-                    $.ajax({
-                        url: "api/customers/" + button.attr("data-customer-id"),
-                        method: "DELETE",
-                        success: function () {
-                            button.parents("tr").remove();
-                        }
-                    });
-                }
+                bootbox.confirm("Are you sure you want to delete this customer?", function (result) {
+                    if (result) {
+                        $.ajax({
+                            url: "/api/customers/" + button.attr("data-customer-id"),
+                            method: "DELETE",
+                            success: function () {
+                                table.row(button.parents("tr")).remove().draw();
+                                //button.parents("tr").remove();
+                            }
+                        });
+                    }
+                });
+
+                ////regular js confirm
+                //if (confirm("Are you sure you want to delete this customer?")) {
+                //    $.ajax({
+                //        url: "api/customers/" + button.attr("data-customer-id"),
+                //        method: "DELETE",
+                //        success: function () {
+                //            button.parents("tr").remove();
+                //        }
+                //    });
+                //}
             });
         });
     </script>
