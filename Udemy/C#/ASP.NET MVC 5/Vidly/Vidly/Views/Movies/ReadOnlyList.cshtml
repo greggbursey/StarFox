@@ -1,0 +1,57 @@
+﻿@*@model List<Vidly.Models.Movie>*@
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Movies</h2>
+
+<table class="table table-hover table-striped"
+       id="movies">
+    <thead>
+        <tr>
+            @*<th>Id</th>*@
+            <th>Name</th>
+            <th>Genre</th>
+        </tr>
+    </thead>
+    <tbody>
+        @*@foreach (var m in Model)
+            {
+            <tr>
+                <td>@m.Id</td>
+                <td>@m.Name</td>
+                @if (m.Genre != null)
+                {
+                    <td>@m.Genre.Name</td>
+                }
+                else
+                {
+                    <td><em>No Genre</em></td>
+                }
+                <td>@Html.ActionLink("Edit Movie", "Edit", new { id = m.Id }, null)</td>
+            </tr>
+            }*@
+    </tbody>
+</table>
+@section scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            var table = $("#movies").DataTable({
+                ajax: {
+                    url: "/api/movies",
+                    dataSrc: ""
+                },
+                columns: [
+                    {
+                        data: "name"
+                    },
+                    {
+                        data: "genre.name"
+                    }
+                ]
+            });
+        });
+    </script>
+}

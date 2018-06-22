@@ -63,6 +63,11 @@ namespace Vidly.Controllers
 
         public ActionResult Index()
         {
+            if (User.IsInRole(RoleName.CanManageMovies))
+                return View("List");
+            else
+                return View("ReadOnlyList");
+
             var movies = _context.Movies
                 .Include(m => m.Genre)//entity framework does not include sub-members by default, using .Include makes it do that
                 .ToList();//immediately executes the query
@@ -153,6 +158,7 @@ namespace Vidly.Controllers
             return RedirectToAction("Index", "Movies");
         }
 
+        [Authorize(Roles = RoleName.CanManageMovies)]
         public ActionResult New()
         {
             var membershipTypes = _context.MembershipTypes.ToList();
