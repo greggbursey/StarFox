@@ -4,3 +4,4 @@
  * launch session using lite-server by typing 'npm start'
  */
 console.info("Hello");
+//# sourceMappingURL=script.js.map

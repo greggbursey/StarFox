@@ -93,13 +93,13 @@ type Complex = { data: number[], output: (all: boolean) => number[] };// this is
 // complex object
 let complex: { data: number[], output: (all: boolean) => number[] } = {
     data: [1, 2, 3],
-    output: function (all: boolean): number[] {
+    output: function (): number[] {
         return this.data;
     }
 };
 let complex2: Complex = {
     data: [100, 1, 2],
-    output: function (all: boolean): number[] {
+    output: function (): number[] {
         return this.data;
     }
 };
@@ -128,3 +128,18 @@ let canBeNull: number | null = 12;
 canBeNull = null;
 let canAlsoBeNull;// undefined by default
 canAlsoBeNull = null;
+
+function controlMe(isTrue: boolean) {
+
+    let result: number | undefined;
+
+    if (isTrue) {
+        result = 12;
+    }
+
+    if (result == undefined) {
+        result = 33;
+    }
+
+    return result;
+}

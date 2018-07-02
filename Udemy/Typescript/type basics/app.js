@@ -78,13 +78,13 @@ userData = {
 // complex object
 var complex = {
     data: [1, 2, 3],
-    output: function (all) {
+    output: function () {
         return this.data;
     }
 };
 var complex2 = {
     data: [100, 1, 2],
-    output: function (all) {
+    output: function () {
         return this.data;
     }
 };
@@ -109,3 +109,14 @@ var canBeNull = 12;
 canBeNull = null;
 var canAlsoBeNull; // undefined by default
 canAlsoBeNull = null;
+function controlMe(isTrue) {
+    var result;
+    if (isTrue) {
+        result = 12;
+    }
+    if (result == undefined) {
+        result = 33;
+    }
+    return result;
+}
+//# sourceMappingURL=app.js.map
