@@ -40,6 +40,8 @@ function overwritable(val: boolean) {
         const newDescription: PropertyDescriptor = {
             writable: val
         }
+        target;
+        propName;
         return newDescription;
     }
 }
@@ -80,6 +82,7 @@ class Course {
         this.name = name;
     }
     printStudentNumbers(mode: string, @printInfo printAll: boolean) {
+        mode;
         if (printAll) {
             console.log(1432);
         } else {
