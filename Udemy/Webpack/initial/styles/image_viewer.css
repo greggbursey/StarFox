@@ -11,12 +11,12 @@ img {
 
 @-webkit-keyframes resize {
     50% {
-        width: 200px;
+        width: 400px;
     }
 }
 
 @keyframes resize {
     50% {
-        width: 200px;
+        width: 400px;
     }
 }
