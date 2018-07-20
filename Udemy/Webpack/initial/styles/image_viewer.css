@@ -1,0 +1,22 @@
+img {
+    border: 10px dashed black;
+    height: auto;
+    width: 500px;
+    -webkit-transition: .3s ease width;
+    -o-transition: .3s ease width;
+    transition: .3s ease width;
+    -webkit-animation: resize 2s infinite;
+            animation: resize 2s infinite;
+}
+
+@-webkit-keyframes resize {
+    50% {
+        width: 200px;
+    }
+}
+
+@keyframes resize {
+    50% {
+        width: 200px;
+    }
+}
