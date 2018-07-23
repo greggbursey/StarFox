@@ -5,14 +5,16 @@ const config = {
     entry: './src/index.js', // relative path
     output: {
         path: path.resolve(__dirname, "build"), // must be an absolute path, __dirname is constant in nodejs (reference to current working directory), folder called build
-        filename: 'bundle.js', // final name of output
+        // filename: 'bundle.js', // final name of output
+        filename: "[name].[chunkhash].js", // essentially adds random characters to the file name to 'bust' browser caching
         publicPath: "build/"
     },
     module: {
         rules: [
             {
                 use: "babel-loader", // tells webpack what loader to run
-                test: /\*js$/ // used by webpack and applied to all file names that we import into our project (just makes sure the file ends with .js - if it does, babel will get applied....if it doesn't (like .css), it won't get applied)
+                test: /\*js$/, // used by webpack and applied to all file names that we import into our project (just makes sure the file ends with .js - if it does, babel will get applied....if it doesn't (like .css), it won't get applied)
+                exclude: /node_modules/
             },
             {
                 // use: ["style-loader", "css-loader"],//applied from right to left
