@@ -1,12 +1,14 @@
-import React from "react"
+import React from "react";
+import "./Person.css";
 
 const person = (props: any): any => {
     return (
-        <div>
-            <p>I'm {props.name}. And I'm {props.age} years old!</p>
+        <div className="Person">
+            <p onClick={props.clickThingy}>I'm {props.name}. And I'm {props.age} years old!</p>
             <p>{props.children}</p>
+            <input type="text" value={props.name} onChange={props.changeMei} />
         </div>
-    )
+    );
 }
 
-export default person
+export default person;
