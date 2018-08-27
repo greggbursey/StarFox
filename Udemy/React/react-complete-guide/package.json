@@ -7,7 +7,8 @@
     "@types/react-dom": "^16.0.7",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
-    "react-scripts": "1.1.5"
+    "react-scripts": "1.1.5",
+    "tslint": "^5.11.0"
   },
   "scripts": {
     "build": "webpack"
@@ -15,7 +16,6 @@
   "devDependencies": {
     "awesome-typescript-loader": "^5.2.0",
     "css-loader": "^1.0.0",
-    "eslint": "^5.4.0",
     "eslint-config-standard": "^11.0.0",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-node": "^7.0.1",

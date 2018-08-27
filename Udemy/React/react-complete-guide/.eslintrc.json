@@ -1,9 +1,0 @@
-{
-    "extends": "standard",
-    "rules": {
-        "no-unused-vars": "off",
-        "quotes": "off",
-        "indent": "off",
-        "space-before-function-paren": "off"
-    }
-}
