@@ -6,61 +6,43 @@ export default class App extends React.Component {
 
   public state = {
     persons: [
-      {
-        name: "Max",
-        age: 28
-      },
-      {
-        name: "Manu",
-        age: 29
-      },
-      {
-        name: "BLAH",
-        age: 0
-      }
+      { name: "Max", age: 28, id: 123 },
+      { name: "Manu", age: 29, id: 456 },
+      { name: "BLAH", age: 0, id: 789 }
     ],
     showPersons: false
   };
 
-  private switchNameHandler = (newName: string): void => {
-    //this.state.persons[0].name = "GArgoyal";// don't do this!
+  private nameChangedHandler = (event: any, id: number): void => {
+
+    const personIndex = this.state.persons.findIndex(p => {
+      return p.id === id;
+    });
+    const person = { ...this.state.persons[personIndex] };
+    person.name = event.target.value;
+
+    const pCopy = [...this.state.persons];
+    pCopy[personIndex] = person;
+
     this.setState(
       {
-        persons: [
-          {
-            name: newName,
-            age: 28
-          },
-          {
-            name: "Manu",
-            age: 29
-          },
-          {
-            name: "BLAH",
-            age: 100
-          }
-        ]
+        persons: pCopy
       }
     );
   };
-
-  private nameChangedHandler = (event: any): void => {
-    this.setState(
-      {
-        persons: [
-          { name: "GAAARRRHG", age: 28 },
-          { name: event.target.value, age: 29 },
-          { name: "BLAH", age: 100 }
-        ]
-      }
-    );
-  }
 
   private togglePersonsHandler = (): void => {
     const doesShow = this.state.showPersons;
     this.setState({
       showPersons: !doesShow
     });
+  };
+
+  private deletePersonHandler = (personIndex: number): void => {
+    //const persons = this.state.persons.slice();//creates a copy
+    const persons = [...this.state.persons];// es6 way to create a copy
+    persons.splice(personIndex, 1);
+    this.setState({ persons: persons });
   }
 
   render(): any {
@@ -78,10 +60,14 @@ export default class App extends React.Component {
       persons = (
         <div>
 
-          {this.state.persons.map(person => {
+          {this.state.persons.map((person: any, index: number) => {
             return <Person
+              clickThingy={(): void => this.deletePersonHandler(index)}
               name={person.name}
-              age={person.age}></Person>
+              age={person.age}
+              key={person.id}// helps react become more efficient - otherwise it will re-render the entire list
+              changeMei={(event: any): void => this.nameChangedHandler(event, person.id)}
+            ></Person>
           })}
         </div>
       );
