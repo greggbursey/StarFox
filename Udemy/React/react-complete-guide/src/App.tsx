@@ -18,7 +18,8 @@ export default class App extends React.Component {
         name: "BLAH",
         age: 0
       }
-    ]
+    ],
+    showPersons: false
   };
 
   private switchNameHandler = (newName: string): void => {
@@ -47,24 +48,20 @@ export default class App extends React.Component {
     this.setState(
       {
         persons: [
-          {
-            name: "GAAARRRHG",
-            age: 28
-          },
-          {
-            name: event.target.value,
-            age: 29
-          },
-          {
-            name: "BLAH",
-            age: 100
-          }
+          { name: "GAAARRRHG", age: 28 },
+          { name: event.target.value, age: 29 },
+          { name: "BLAH", age: 100 }
         ]
       }
     );
   }
 
-
+  private togglePersonsHandler = (): void => {
+    const doesShow = this.state.showPersons;
+    this.setState({
+      showPersons: !doesShow
+    });
+  }
 
   render(): any {
 
@@ -75,13 +72,30 @@ export default class App extends React.Component {
       padding: "8px"
     };
 
+    let persons = null;
+
+    if (this.state.showPersons) {
+      persons = (
+        <div>
+
+          {this.state.persons.map(person => {
+            return <Person
+              name={person.name}
+              age={person.age}></Person>
+          })}
+        </div>
+      );
+    }
+
     return (
       <div className="App">
+
         <h1>Hi, I'm a ReactApp.</h1>
-        <button onClick={this.switchNameHandler.bind(this, "GARGG")} style={style}>Switch Name</button>
-        <Person name={this.state.persons[0].name} age={this.state.persons[0].age} clickThingy={this.switchNameHandler.bind(this, "Hair E")}></Person>
-        <Person name={this.state.persons[1].name} age={this.state.persons[1].age} changeMei={this.nameChangedHandler}></Person>
-        <Person name={this.state.persons[2].name} age={this.state.persons[2].age}></Person>
+
+        <button onClick={this.togglePersonsHandler} style={style}>Switch Name</button>
+
+        {persons}
+
       </div>
     );
   }
