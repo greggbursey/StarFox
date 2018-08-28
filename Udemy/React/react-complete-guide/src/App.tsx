@@ -72,7 +72,6 @@ export default class App extends React.Component {
       backgroundColor: "#fff",
       font: "inherit",
       border: "1px solid blue",
-      cursor: "pointer",
       padding: "8px"
     };
 
