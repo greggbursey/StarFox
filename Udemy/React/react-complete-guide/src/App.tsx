@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.css";
 import Person from "./Person/Person";
+import Char from "./Char/Char";
 
 export default class App extends React.Component {
 
@@ -10,7 +11,8 @@ export default class App extends React.Component {
       { name: "Manu", age: 29, id: 456 },
       { name: "BLAH", age: 0, id: 789 }
     ],
-    showPersons: false
+    showPersons: false,
+    userInput: ""
   };
 
   private nameChangedHandler = (event: any, id: number): void => {
@@ -45,7 +47,21 @@ export default class App extends React.Component {
     this.setState({ persons: persons });
   }
 
+  private deleteCharHandler = (index: number): void => {
+    const text = this.state.userInput.split("");
+    text.splice(index, 1);
+
+    const updatedText = text.join("");
+    this.setState({
+      userInput: updatedText
+    });
+  };
+
   render(): any {
+
+    const charList = this.state.userInput.split("").map((ch, index) => {
+      return <Char character={ch} key={index} clicked={(): void => this.deleteCharHandler(index)}></Char>;
+    });
 
     const style = {
       backgroundColor: "#fff",
@@ -78,9 +94,10 @@ export default class App extends React.Component {
 
         <h1>Hi, I'm a ReactApp.</h1>
 
-        <button onClick={this.togglePersonsHandler} style={style}>Switch Name</button>
+        <button onClick={this.togglePersonsHandler} style={style}>Toggle People</button>
 
         {persons}
+        {charList}
 
       </div>
     );
