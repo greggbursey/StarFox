@@ -1,4 +1,4 @@
-import React from "react";
+import React, { CSSProperties } from "react";
 import "./Person.css";
 import Validate from "../Validation/validation";
 
