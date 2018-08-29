@@ -1,6 +1,6 @@
 import React, { CSSProperties } from "react";
 import "./Person.css";
-import Validate from "../Validation/validation";
+import Validate from "../../Validation/Validation";
 
 const person = (props: any): any => {
 

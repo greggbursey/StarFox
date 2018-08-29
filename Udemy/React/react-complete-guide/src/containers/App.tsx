@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
-import Person from "./Person/Person";
-import Char from "./Char/Char";
+import Person from "../components/Persons/Person/Person";
+import Char from "../components/Char/Char";
 
 class App extends React.Component {
 
