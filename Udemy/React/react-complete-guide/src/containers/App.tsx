@@ -1,7 +1,8 @@
 import React from "react";
 import "./App.css";
-import Person from "../components/Persons/Person/Person";
 import Char from "../components/Char/Char";
+import Persons from "../components/Persons/Persons";
+import Cockpit from "../components/Cockpit/Cockpit";
 
 class App extends React.Component {
 
@@ -74,44 +75,25 @@ class App extends React.Component {
 
     if (this.state.showPersons) {
       persons = (
-        <div>
 
-          {this.state.persons.map((person: any, index: number) => {
-            return <Person
-              clickThingy={(): void => this.deletePersonHandler(index)}
-              name={person.name}
-              age={person.age}
-              key={person.id}// helps react become more efficient - otherwise it will re-render the entire list
-              changeMei={(event: any): void => this.nameChangedHandler(event, person.id)}
-            ></Person>
-          })}
-        </div>
+        <Persons
+          persons={this.state.persons}
+          clicked={this.deletePersonHandler}
+          changed={this.nameChangedHandler}
+        ></Persons>
+
       );
 
       style.backgroundColor = "green";
     }
 
-    //let classes = ["red", "bold"].join(" ");// "red bold"
-    const classes: string[] = [];
-    if (this.state.persons.length <= 2) {
-      classes.push("red");
-    }
-    if (this.state.persons.length <= 1) {
-      classes.push("bold");
-    }
-
     return (
 
       <div className="App">
-
-        <h1>Hi, I'm a ReactApp.</h1>
-        <p className={classes.join(" ")}>This is really nice</p>
-
-        <button onClick={this.togglePersonsHandler} style={style}>Toggle People</button>
-
-        {persons}
-        {charList}
-
+        <Cockpit>
+          {persons}
+          {charList}
+        </Cockpit>
       </div>
     );
   }
