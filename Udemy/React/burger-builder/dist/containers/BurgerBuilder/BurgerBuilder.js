@@ -11,13 +11,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = __importStar(require("react"));
-const Layout_1 = __importDefault(require("./components/Layout/Layout"));
-const BurgerBuilder_1 = __importDefault(require("./containers/BurgerBuilder/BurgerBuilder"));
-class App extends react_1.Component {
+const RAux_1 = __importDefault(require("../../hoc/RAux"));
+class BurgerBuilder extends react_1.Component {
     render() {
-        return (react_1.default.createElement("div", null,
-            react_1.default.createElement(Layout_1.default, null,
-                react_1.default.createElement(BurgerBuilder_1.default, null))));
+        return (react_1.default.createElement(RAux_1.default, null,
+            react_1.default.createElement("div", null, "Burger"),
+            react_1.default.createElement("div", null, "Build Controls")));
     }
 }
-exports.default = App;
+exports.default = BurgerBuilder;
