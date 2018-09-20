@@ -7,11 +7,6 @@ interface IBurgerIngredient {
 
 class BurgerIngredient extends Component {
 
-    public props: IBurgerIngredient = {
-        type: ""
-    };
-    public static propTypes: any;
-
     render(): JSX.Element | null {
         let ingredient = null;
 
