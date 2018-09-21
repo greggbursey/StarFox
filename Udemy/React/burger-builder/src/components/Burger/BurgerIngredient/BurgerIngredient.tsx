@@ -1,11 +1,10 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 
-interface IBurgerIngredient {
-    type: string;
+interface IDataPropTypes {
+    type: string
 }
 
-class BurgerIngredient extends Component {
+class BurgerIngredient extends Component<IDataPropTypes> {
 
     render(): JSX.Element | null {
         let ingredient = null;
@@ -40,10 +39,6 @@ class BurgerIngredient extends Component {
 
         return ingredient;
     }
-}
-
-BurgerIngredient.propTypes = {
-    type: PropTypes.string.isRequired
 }
 
 export default BurgerIngredient;
