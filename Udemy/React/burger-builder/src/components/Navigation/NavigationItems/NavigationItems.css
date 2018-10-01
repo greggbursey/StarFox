@@ -3,6 +3,11 @@
     padding: 0;
     height: 100%;
     list-style: none;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-flow: column;
+        -ms-flex-flow: column;
+            flex-flow: column;
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -11,4 +16,14 @@
     -webkit-align-items: center;
         -ms-flex-align: center;
             align-items: center;
+}
+
+@media(min-width: 500px){
+    .NavigationItems {
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        -webkit-flex-flow: row;
+            -ms-flex-flow: row;
+                flex-flow: row;
+    }
 }

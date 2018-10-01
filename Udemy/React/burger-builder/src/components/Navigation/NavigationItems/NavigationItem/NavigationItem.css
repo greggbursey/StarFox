@@ -1,25 +1,15 @@
 .NavigationItem {
-    margin: 0;
-    height: 100%;
+    margin: 10px 0;
+    width: 100%;
     -webkit-box-sizing: border-box;
             box-sizing: border-box;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-        -ms-flex-align: center;
-            align-items: center;
 }
 
 .NavigationItem a {
-    color: #fff;
+    color: #8f5c2c;
     text-decoration: none;
-    height: 100%;
-    padding: 16px 10px;
+    width: 100%;
     display: block;
-    border-bottom: 4px solid transparent;
     -webkit-box-sizing: border-box;
             box-sizing: border-box;
 }
@@ -27,7 +17,36 @@
 .NavigationItem a:hover,
 .NavigationItem a:active,
 .NavigationItem a.active {
-    background-color: #8f5c2c;
-    border-bottom: 4px solid #40a4c8;
-    color: #fff;
+    color: #40a4c8;
+}
+
+@media(min-width: 500px){
+    .NavigationItem {
+        margin: 0;
+        height: 100%;
+        width: auto;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+            -ms-flex-align: center;
+                align-items: center;
+    }
+    
+    .NavigationItem a {
+        color: #fff;
+        height: 100%;
+        padding: 16px 10px;
+        border-bottom: 4px solid transparent;
+    }
+    
+    .NavigationItem a:hover,
+    .NavigationItem a:active,
+    .NavigationItem a.active {
+        background-color: #8f5c2c;
+        border-bottom: 4px solid #40a4c8;
+        color: #fff;
+    }
 }

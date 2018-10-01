@@ -2,9 +2,9 @@ import React from "react";
 //const burgerLogo = require("../../assets/images/burger-logo.png");
 
 const logo = (props: any): any => {
-    <div className="Logo">
+    <div className="Logo" style={{ height: props.height }}>
         <img alt="MyBurger" />
-    </div>
+    </div >
 };
 
 export default logo;
