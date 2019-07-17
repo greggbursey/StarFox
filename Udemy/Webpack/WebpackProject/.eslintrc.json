@@ -1,0 +1,11 @@
+{
+    "extends": "standard",
+    "rules": {
+        "quotes": "off",
+        "indent": "off",
+        "semi": "off",
+        "no-unused-vars": "warn",
+        "comma-dangle": "off",
+        "no-undef": "warn"
+    }
+}
