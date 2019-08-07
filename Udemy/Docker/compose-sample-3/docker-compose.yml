@@ -6,8 +6,12 @@ version: '2'
 services:
   proxy:
     build:
+      # build in current directory
       context: .
+      # a specially named docker file
       dockerfile: nginx.Dockerfile
+      # name the image
+    image: nginx-custom
     ports:
       - '80:80'
   web:
