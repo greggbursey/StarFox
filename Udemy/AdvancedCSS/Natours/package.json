@@ -9,7 +9,7 @@
   "author": "GWAGG",
   "license": "ISC",
   "devDependencies": {
-    "node-sass": "^4.7.2"
+    "node-sass": "^4.13.1"
   },
   "dependencies": {}
 }
